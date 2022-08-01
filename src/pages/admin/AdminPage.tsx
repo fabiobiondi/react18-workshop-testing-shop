@@ -2,13 +2,31 @@ import clsx from "clsx";
 import {ArrowCircleRightIcon, PencilAltIcon, TrashIcon} from "@heroicons/react/solid";
 import {useAdmin} from "./hooks/useAdmin";
 import DropDown from "../../shared/components/DropDown";
+import {DialogConfirm} from "../../shared/components/DialogConfirm";
+import {useState} from "react";
+import {Order} from "../../model/order";
 
 export default function AdminPage() {
   const { orders, actions } = useAdmin();
+  const [orderToDelete, setOrderToDelete] = useState<Order | null>(null)
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4" aria-label="Top">
 
+      <DialogConfirm
+        show={!!orderToDelete}
+        title="Delete Order"
+        description="Are you sure to delete this order?"
+        cancelLabel="Cancel"
+        confirmLabel="Confirm"
+        onCancel={() => setOrderToDelete(null)}
+        onConfirm={() => {
+          actions.deleteOrder(orderToDelete!.id);
+          setOrderToDelete(null);
+        }}
+        icon={<TrashIcon />}
+      />
       <div className="flex flex-col">
         <div className="-my-2  sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -62,7 +80,7 @@ export default function AdminPage() {
                         defaultLabel="Actions"
                         items={[
                           { label: 'Toggle Status', action: () => actions.toggleStatus(order), Icon: () => <PencilAltIcon className="dropdown-icon"/>},
-                          { label: 'Delete', action: () => actions.deleteOrder(order.id), Icon: () => <TrashIcon className="dropdown-icon"/>},
+                          { label: 'Delete', action: () => setOrderToDelete(order), Icon: () => <TrashIcon className="dropdown-icon"/>},
                         ]}
                       />
                     </td>
