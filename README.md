@@ -1,9 +1,7 @@
 # TODO
 
 ## VIEWS
-
 * HOME (TODO)
-* ADMIN (TODO): add a confirm modal when an order is deleted 
 
 ## UIKIT
 
