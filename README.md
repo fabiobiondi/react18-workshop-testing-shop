@@ -3,6 +3,7 @@
 ## VIEWS
 
 * HOME (TODO)
+* PRODUCT PAGE: move logic in hook
 * ADMIN (TODO): add a confirm modal when an order is deleted 
 
 ## UIKIT
