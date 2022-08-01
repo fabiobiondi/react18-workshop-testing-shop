@@ -1,0 +1,189 @@
+{
+  "login": {
+    "accessToken": "Jt2XJHq6p9pog8ZavJzBKt3c"
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "Basic Tee",
+      "description": "Front of men's Basic Tee in black.",
+      "images": [
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+        "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
+        "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
+        "https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
+      ],
+      "price": 35,
+      "colors": [
+        "black",
+        "gray",
+        "purple"
+      ],
+      "highlights": [
+        "Hand cut and sewn locally",
+        "Dyed with our proprietary colors",
+        "Pre-washed & pre-shrunk",
+        "Ultra-soft 100% cotton"
+      ],
+      "reviews": {
+        "average": 3,
+        "totalCount": 88
+      },
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Street T-Shirt",
+      "description": "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
+      "images": [
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg",
+        "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
+        "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
+        "https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
+      ],
+      "price": 20,
+      "colors": [
+        "white",
+        "lightgreen",
+        "lightblue"
+      ],
+      "highlights": [
+        "Hand cut and sewn locally",
+        "Dyed with our proprietary colors",
+        "Pre-washed & pre-shrunk",
+        "Ultra-soft 100% cotton"
+      ],
+      "reviews": {
+        "average": 4,
+        "totalCount": 88
+      },
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Fit Slim Tee",
+      "description": "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
+      "images": [
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg",
+        "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
+        "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
+        "https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
+      ],
+      "price": 15,
+      "colors": [
+        "gray",
+        "lightgray",
+        "darkgray"
+      ],
+      "highlights": [
+        "Hand cut and sewn locally",
+        "Dyed with our proprietary colors",
+        "Pre-washed & pre-shrunk",
+        "Ultra-soft 100% cotton"
+      ],
+      "reviews": {
+        "average": 3,
+        "totalCount": 22
+      },
+      "sizes": [
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "client": {
+        "id": 1,
+        "first_name": "Mario",
+        "last_name": "Rossi",
+        "email": "mario@rossi.com",
+        "country": "Italy",
+        "street": "Via Bianchi 123",
+        "city": "Verdagno",
+        "state_prov": "RM",
+        "zip": "12345",
+        "notification_email": false,
+        "notification_sms": true
+      },
+      "items": [
+        {
+          "productId": 1,
+          "color": "Black",
+          "size": "XS",
+          "qty": 1
+        },
+        {
+          "productId": 1,
+          "color": "black",
+          "size": "S",
+          "qty": 2
+        },
+        {
+          "productId": 2,
+          "color": "white",
+          "size": "XXS",
+          "qty": 1
+        }
+      ],
+      "totalCost": 125,
+      "totalItems": 4,
+      "status": "pending"
+    },
+    {
+      "client": {
+        "first_name": "1",
+        "last_name": "2",
+        "email": "3",
+        "country": "4",
+        "street": "5",
+        "city": "6",
+        "state_prov": "7",
+        "zip": "8",
+        "notification_email": false,
+        "notification_sms": true
+      },
+      "totalCost": 95,
+      "totalItems": 4,
+      "status": "pending",
+      "items": [
+        {
+          "productId": 2,
+          "color": "white",
+          "size": "XS",
+          "qty": 2
+        },
+        {
+          "productId": 2,
+          "color": "lightblue",
+          "size": "XS",
+          "qty": 1
+        },
+        {
+          "productId": 1,
+          "color": "purple",
+          "size": "M",
+          "qty": 1
+        }
+      ],
+      "id": 2
+    }
+  ]
+}
