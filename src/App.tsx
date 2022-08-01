@@ -1,8 +1,8 @@
 import React from 'react';
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import NavBar from "./core/components/NavBar";
 import ShopPage from "./pages/shop/ShopPage";
 import CartSummaryPanel from "./core/components/CartSummaryPanel";
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import AdminPage from "./pages/admin/AdminPage";
 import ProductPage from "./pages/shop/ProductPage";
 import CheckoutConfirmPage from "./pages/checkout/CheckoutConfirmPage";

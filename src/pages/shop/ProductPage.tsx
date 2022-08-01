@@ -1,20 +1,25 @@
+import clsx from "clsx";
 import { useState } from 'react'
 import { StarIcon } from '@heroicons/react/solid'
 import { RadioGroup } from '@headlessui/react'
-import {mockProducts} from "../../data/mock";
+
 import {useCart} from "../../core/store/cart.store";
-import {useParams} from "react-router-dom";
+import {useProductPage} from "./hooks/useProductPage";
+import {Spinner} from "../../shared/components/Spinner";
+import {Product} from "../../model/product";
 
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function ProductPage() {
-  const params = useParams<{id: string}>()
-  const product = mockProducts.find(p => p.id === +params.id!)!;
-  const [selectedColor, setSelectedColor] = useState<string>(product.colors[0])
-  const [selectedSize, setSelectedSize] = useState<string>(product.sizes[0])
+  const { product } = useProductPage();
+  return product ?
+    <View product={product} /> :
+    <div className="flex justify-center"><Spinner /></div>;
+}
+
+
+function View({ product }: { product: Product}) {
+  const [selectedColor, setSelectedColor] = useState<string>(product.colors[0]);
+  const [selectedSize, setSelectedSize] = useState<string>(product.sizes[0]);
   const addToCart = useCart(s => s.addToCart);
 
   return (
@@ -71,7 +76,7 @@ export default function ProductPage() {
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <StarIcon
                       key={rating}
-                      className={classNames(
+                      className={clsx(
                         product.reviews.average > rating ? 'text-gray-900' : 'text-gray-200',
                         'h-5 w-5 flex-shrink-0'
                       )}
@@ -100,7 +105,7 @@ export default function ProductPage() {
                         value={color}
                         style={{backgroundColor: color}}
                         className={({ active, checked }) =>
-                          classNames(
+                          clsx(
                             // active && checked ? 'ring ring-offset-1' : '',
                             checked ? 'ring ring-offset-1' : '',
                             /*!active && checked ? 'ring-2' : '',*/
@@ -114,9 +119,7 @@ export default function ProductPage() {
                         <span
                           aria-hidden="true"
                           style={{backgroundColor: color}}
-                          className={classNames(
-                            'h-8 w-8 border border-black border-opacity-10 rounded-full'
-                          )}
+                          className="h-8 w-8 border border-black border-opacity-10 rounded-full"
                         />
                       </RadioGroup.Option>
                     ))}
@@ -138,7 +141,7 @@ export default function ProductPage() {
                         key={size}
                         value={size}
                         className={({ active }) =>
-                          classNames(
+                          clsx(
                             active ? 'ring-2 ring-indigo-500' : '',
                             'group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6'
                           )
@@ -149,7 +152,7 @@ export default function ProductPage() {
                             <RadioGroup.Label as="span">{size}</RadioGroup.Label>
                             {size ? (
                               <span
-                                className={classNames(
+                                className={clsx(
                                   active ? 'border' : 'border-2',
                                   checked ? 'border-indigo-500' : 'border-transparent',
                                   'absolute -inset-px rounded-md pointer-events-none'
