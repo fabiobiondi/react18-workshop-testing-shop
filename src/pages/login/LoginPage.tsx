@@ -1,23 +1,23 @@
-import Axios from 'axios';
+import Axios, {AxiosError} from 'axios';
 import React, {FormEvent, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Auth, Credentials } from '../../model/auth';
 import { useAuth } from '../../shared/auth/useAuth';
 import clsx from "clsx";
 import {Spinner} from "../../shared/components/Spinner";
+import axios from "axios";
 
 
-const INITIAL_STATE: Credentials = { username: '', password: '' };
+const INITIAL_STATE: Credentials = { username: 'demo@demo.com', password: '123456' };
 
 export default function LoginPage() {
   const navigate = useNavigate()
-  const { signIn, isLogged } = useAuth();
+  const { signIn, isLogged, error, pending } = useAuth();
   const [formData, setFormData] = useState<Credentials>(INITIAL_STATE)
   const [dirty, setDirty] = useState<boolean>(false);
-  const [pending, setPending] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
+    // autologin
     if (isLogged()) {
       navigate('/admin')
     }
@@ -33,21 +33,30 @@ export default function LoginPage() {
 
   function loginHandler(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setError(false);
-    setPending(true);
 
     signIn(formData)
-      .then((res: Auth) => {
-        navigate('/admin')
+      .then((res) => {
+        // TODO: mmm... read fix below
+        if (!(res instanceof AxiosError)) {
+          navigate('/admin')
+        }
       })
-      .catch(() => setError(true))
-      .finally(() => setPending(false))
+      // TO FIX: dunno why catch callback is not invoked
+      .catch(() => console.log('never here....mmm!'))
+
   }
 
   const isUserNameValid = formData.username.length > 3;
   const isPassValid = formData.password.length > 3;
   const isValid = isUserNameValid && isPassValid;
 
+
+  function registerUser() {
+    axios.post('http://localhost:3001/register', {
+      email: "demo@demo.com",
+      password: "123456"
+    })
+  }
 
   return (
       <div className="mt-32  flex flex-col justify-center  sm:px-6 lg:px-8">
@@ -122,6 +131,7 @@ export default function LoginPage() {
 
           </div>
         </div>
+        <button onClick={registerUser}>Register</button>
       </div>
   )
 };

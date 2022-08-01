@@ -1,4 +1,11 @@
 {
+  "users": [
+    {
+      "email": "demo@demo.com",
+      "password": "$2a$10$4M.hF61xW4lIcA4sk.DCp.jrdF4vdpG6grCn3zHoWOwK8Eh5Kqi/G",
+      "id": 1
+    }
+  ],
   "login": {
     "accessToken": "Jt2XJHq6p9pog8ZavJzBKt3c"
   },

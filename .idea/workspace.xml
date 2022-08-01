@@ -51,24 +51,12 @@
       <updated>1659279867865</updated>
       <workItem from="1659279870776" duration="16000" />
       <workItem from="1659279891172" duration="16141000" />
-      <workItem from="1659345293359" duration="17210000" />
+      <workItem from="1659345293359" duration="20442000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/pages/admin/hooks/useAdmin.tsx</url>
-          <line>15</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

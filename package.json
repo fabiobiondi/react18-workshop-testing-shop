@@ -29,7 +29,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch server/db.json --port 3001"
+    "server": "json-server-auth --watch server/db.json --port 3001",
+    "server:noauth": "json-server --watch server/db.json --port 3001"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +53,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.8",
     "json-server": "^0.17.0",
+    "json-server-auth": "^2.1.0",
     "msw": "^0.44.2",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.7"

@@ -10,10 +10,13 @@ import HomePage from "./pages/home/HomePage";
 import CheckoutPage from "./pages/checkout/CheckoutPage";
 import LoginPage from "./pages/login/LoginPage";
 import {AuthGuard} from "./shared/auth/auth.guard";
+import {Interceptor} from "./shared/auth/Interceptor";
 
 function App() {
+
   return (
-    <BrowserRouter>
+    <div>
+      <Interceptor />
       <NavBar />
       <div className="pt-40 lg:pt-24">
         <Routes>
@@ -32,7 +35,7 @@ function App() {
         </Routes>
       </div>
       <CartSummaryPanel />
-    </BrowserRouter>
+    </div>
   );
 }
 
