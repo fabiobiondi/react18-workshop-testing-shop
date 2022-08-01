@@ -2,7 +2,6 @@ import {Link} from "react-router-dom";
 import {ColorCircle} from "../../shared/components/ColorCircle";
 import {useShop} from "./hooks/useShop";
 
-
 export default function ShopPage() {
   const { products } = useShop();
 

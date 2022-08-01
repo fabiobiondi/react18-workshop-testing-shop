@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Auth, Credentials } from '../../model/auth';
 import { useAuth } from '../../shared/auth/useAuth';
@@ -10,12 +10,18 @@ import {Spinner} from "../../shared/components/Spinner";
 const INITIAL_STATE: Credentials = { username: '', password: '' };
 
 export default function LoginPage() {
-  const navigation = useNavigate()
-  const { signIn } = useAuth();
+  const navigate = useNavigate()
+  const { signIn, isLogged } = useAuth();
   const [formData, setFormData] = useState<Credentials>(INITIAL_STATE)
   const [dirty, setDirty] = useState<boolean>(false);
   const [pending, setPending] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isLogged()) {
+      navigate('/admin')
+    }
+  }, [isLogged, navigate])
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDirty(true);
@@ -32,7 +38,7 @@ export default function LoginPage() {
 
     signIn(formData)
       .then((res: Auth) => {
-        navigation('/admin')
+        navigate('/admin')
       })
       .catch(() => setError(true))
       .finally(() => setPending(false))
