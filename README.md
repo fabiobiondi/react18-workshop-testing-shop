@@ -9,7 +9,7 @@
 
 * DropDown
 * Color Circle
-* LeafletMap - for Homepage (TODO: copy from another project)
+* (maybe) LeafletMap - for Homepage (TODO: copy from another project) 
 * Stars / Rate (TODO)
 * Increment / Decrement quantity (TODO)
 * Single Product Panel in Shop Page (TODO)
@@ -37,6 +37,7 @@
     
 
 Unit
+    * Creare alcuni componenti Riusabili (vedi lista UIKIT sopra)
     * Testare componenti UIKIT
     * Testare alcuni custom hooks (fetch dati + hooks)
         * probabilmente sarà necessario mockare alcune librerie come il router
