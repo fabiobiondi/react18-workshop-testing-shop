@@ -5,8 +5,8 @@
  */
 
 import Axios from 'axios';
-import { Auth, Credentials } from '../../model/auth';
-import { getItemFromLocalStorage, removeItemLocalStorage, setItemLocalStorage } from './localstorage.utils';
+import { Auth, Credentials } from '../../../model/auth';
+import { getItemFromLocalStorage, removeItemLocalStorage, setItemLocalStorage } from '../../utils/localstorage.utils';
 import {useState} from "react";
 
 export const url = 'http://localhost:3001/login';

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Order} from "../../../model/order";
 import axios from "axios";
 import {BASE_API} from "../../../core/config";
-import {getItemFromLocalStorage} from "../../../shared/auth/localstorage.utils";
+import {getItemFromLocalStorage} from "../../../shared/utils/localstorage.utils";
 
 export function useAdmin() {
   const [orders, setOrders] = useState<Order[]>([]);

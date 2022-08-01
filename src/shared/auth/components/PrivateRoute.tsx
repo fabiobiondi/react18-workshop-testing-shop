@@ -1,9 +1,8 @@
-import React  from 'react';
 import { Navigate } from 'react-router-dom';
 import { PathRouteProps } from 'react-router/lib/components';
-import {useAuth} from "./useAuth";
+import { useAuth } from "../hooks/useAuth";
 
-export const AuthGuard = ({ path, element }: PathRouteProps) => {
+export const PrivateRoute = ({ path, element }: PathRouteProps) => {
   const { isLogged } = useAuth();
   return isLogged() ?
     <div>{element}</div> :

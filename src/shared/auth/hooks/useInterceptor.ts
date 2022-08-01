@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
 import Axios from 'axios';
-import {getItemFromLocalStorage} from "./localstorage.utils";
-import {useNavigate} from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { getItemFromLocalStorage } from "../../utils/localstorage.utils";
+import { useNavigate } from "react-router-dom";
 
 export const useInterceptor = () => {
   const [request, setRequest] = useState<any>(null);

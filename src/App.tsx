@@ -9,8 +9,8 @@ import CheckoutConfirmPage from "./pages/checkout/CheckoutConfirmPage";
 import HomePage from "./pages/home/HomePage";
 import CheckoutPage from "./pages/checkout/CheckoutPage";
 import LoginPage from "./pages/login/LoginPage";
-import {AuthGuard} from "./shared/auth/auth.guard";
-import {Interceptor} from "./shared/auth/Interceptor";
+import {PrivateRoute} from "./shared/auth/components/PrivateRoute";
+import {Interceptor} from "./shared/auth/components/Interceptor";
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="home" element={<HomePage />} />
           <Route path="admin" element={
-            <AuthGuard path="/login" element={<AdminPage />} />
+            <PrivateRoute path="/login" element={<AdminPage />} />
           } />
           <Route path="login" element={<LoginPage />} />
           <Route path="shop" element={<ShopPage />} />

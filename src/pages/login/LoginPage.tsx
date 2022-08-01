@@ -2,7 +2,7 @@ import Axios, {AxiosError} from 'axios';
 import React, {FormEvent, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Auth, Credentials } from '../../model/auth';
-import { useAuth } from '../../shared/auth/useAuth';
+import { useAuth } from '../../shared/auth/hooks/useAuth';
 import clsx from "clsx";
 import {Spinner} from "../../shared/components/Spinner";
 import axios from "axios";

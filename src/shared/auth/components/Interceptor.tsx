@@ -1,4 +1,4 @@
-import {useInterceptor} from "./useInterceptor";
+import {useInterceptor} from "../hooks/useInterceptor";
 
 export function Interceptor() {
   useInterceptor()
