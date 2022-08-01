@@ -16,3 +16,31 @@
 * Sizes (TODO)
 * Colors (TODO)
 
+
+# TEST (TODO)
+
+* E2E
+  * Iniziare con i test dell'homepage
+    * selettori
+    * simulare eventi nativi
+    * Mock e Interceptor
+  * Testare alcuni componenti in modo isolato
+    * Modali
+    * Dropdown
+    * Altre utils
+  * Testare tutto il processo di acquisto
+    * ...
+  * Testare Area Admin
+    * Creare un command per l'auth
+    * Mock Auth
+    * Testare protezione route
+    
+
+Unit
+    * Testare componenti UIKIT
+    * Testare alcuni custom hooks (fetch dati + hooks)
+        * probabilmente sarà necessario mockare alcune librerie come il router
+        * Utilizzo di MSW per il mock
+    * Può aver senso testare un form visto che lo facciamo E2E?
+    
+    
