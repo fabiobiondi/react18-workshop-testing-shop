@@ -3,6 +3,8 @@ const auth = require('json-server-auth')
 const path = require('path')
 const chalk = require('chalk');
 
+console.log('Starting server...');
+
 // function prettyPrint(object) {
 //   console.log();
 //   console.log(chalk.bold('Resources'));
@@ -24,6 +26,7 @@ const middlewares = jsonServer.defaults()
 server.use(middlewares)
 server.use(auth)
 server.get('/', (request, response) => {
+  console.log('Starting request...');
   const { name } = request.query;
   response.status(200).send(`Hello ${name}!`);
 })
