@@ -16,7 +16,7 @@ console.log('Starting server...');
 // }
 
 const server = jsonServer.create({
-  noCors: true
+  noCors: true,
 })
 // const router = jsonServer.router(path.join(process.cwd(), 'server', 'db.json'))
 const middlewares = jsonServer.defaults()
@@ -24,7 +24,7 @@ const middlewares = jsonServer.defaults()
 // server.db = router.db
 
 server.use(middlewares)
-server.use(auth)
+// server.use(auth)
 server.get('/', (request, response) => {
   console.log('Starting request...');
   const { name } = request.query;
@@ -39,7 +39,7 @@ server.get('/', (request, response) => {
 //   })
 // }
 
-module.exports = server;
+export default server;
 
 // export default function handler(request, response) {
 //   const { name } = request.query;
