@@ -23,6 +23,10 @@ const middlewares = jsonServer.defaults()
 
 server.use(middlewares)
 server.use(auth)
+server.get('/', (request, response) => {
+  const { name } = request.query;
+  response.status(200).send(`Hello ${name}!`);
+})
 // server.use(router)
 
 // if (require.main === module) {
@@ -32,9 +36,9 @@ server.use(auth)
 //   })
 // }
 
-// module.exports = server;
+module.exports = server;
 
-export default function handler(request, response) {
-  const { name } = request.query;
-  response.status(200).send(`Hello ${name}!`);
-}
+// export default function handler(request, response) {
+//   const { name } = request.query;
+//   response.status(200).send(`Hello ${name}!`);
+// }
