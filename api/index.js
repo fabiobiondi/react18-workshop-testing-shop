@@ -1,7 +1,7 @@
-// const jsonServer = require('json-server')
-// const auth = require('json-server-auth')
-// const path = require('path')
-// const chalk = require('chalk');
+const jsonServer = require('json-server')
+const auth = require('json-server-auth')
+const path = require('path')
+const chalk = require('chalk');
 
 // function prettyPrint(object) {
 //   console.log();
@@ -13,16 +13,16 @@
 //   console.log();
 // }
 
-// const server = jsonServer.create({
-//   noCors: true
-// })
+const server = jsonServer.create({
+  noCors: true
+})
 // const router = jsonServer.router(path.join(process.cwd(), 'server', 'db.json'))
-// const middlewares = jsonServer.defaults()
+const middlewares = jsonServer.defaults()
 
 // server.db = router.db
 
-// server.use(middlewares)
-// server.use(auth)
+server.use(middlewares)
+server.use(auth)
 // server.use(router)
 
 // if (require.main === module) {
