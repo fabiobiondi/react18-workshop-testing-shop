@@ -25,14 +25,10 @@ server.use(middlewares)
 server.use(auth)
 server.use(router)
 
-if (require.main === module) {
-  // called directly i.e. "node app"
-  server.listen(3001, () => {
-    prettyPrint(router.db.getState());
-    console.log('JSON Server is running')
-  })
-} else {
-  // required as a module => executed on vercel functions
-  module.exports = server;
-}
+server.listen(3001, () => {
+  prettyPrint(router.db.getState());
+  console.log('JSON Server is running')
+})
+
+module.exports = server;
 

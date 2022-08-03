@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "node api/index.js",
+    "server": "node api/*.js",
     "server:noauth": "json-server --watch server/db.json --port 3001"
   },
   "eslintConfig": {
