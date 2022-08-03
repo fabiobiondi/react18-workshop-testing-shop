@@ -5,16 +5,16 @@ import {Client} from "../../model/order";
 import {useCheckout} from "./hooks/useCheckout";
 
 const initialState: Omit<Client, 'id'> = {
-  first_name: '1',
-  last_name: '2',
-  email: '3',
-  country: '4',
-  street: '5',
-  city: '6',
-  state_prov: '7',
-  zip: '8',
-  notification_email: false,
-  notification_sms: true,
+  first_name: '',
+  last_name: '',
+  email: '',
+  country: '',
+  street: '',
+  city: '',
+  state_prov: '',
+  zip: '',
+  notification_email: true,
+  notification_sms: false,
 }
 
 export default function CheckoutPage() {
@@ -62,8 +62,8 @@ export default function CheckoutPage() {
         <div className="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-              <p className="mt-1 text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">Shipping Info</h3>
+              <p className="mt-1 text-sm text-gray-500">Add the address where you want to receive products  </p>
             </div>
             <div className="mt-5 md:mt-0 md:col-span-2">
               <div>
@@ -285,7 +285,9 @@ export default function CheckoutPage() {
         </div>
       </form>
 
+{/*
       <pre>{JSON.stringify(formData, null, 2)}</pre>
+*/}
     </div>
   )
 }

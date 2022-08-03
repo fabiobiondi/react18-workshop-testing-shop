@@ -3,7 +3,6 @@ import {productsMock} from "../mocks/products";
 import {mockProducts} from "../../../src/data/mock";
 
 describe('Cart Summary', () => {
-    let cartSummary;
     beforeEach(() => {
         // Mock Products request and provide mock data
         cy.intercept(`${BASE_API}/products/1`, {method: 'GET'}, productsMock[0])
