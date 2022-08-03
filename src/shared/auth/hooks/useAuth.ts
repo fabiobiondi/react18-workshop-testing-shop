@@ -14,8 +14,6 @@ import {
   setItemLocalStorage,
 } from "../../utils/localstorage.utils";
 
-export const url = `${BASE_API}/login`;
-
 export function useAuth() {
   const [pending, setPending] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -24,7 +22,7 @@ export function useAuth() {
     setError(false);
     setPending(true);
 
-    return Axios.post<Auth>(`${url}/login`, {
+    return Axios.post<Auth>(`${BASE_API}/login`, {
       email: params.username,
       password: params.password,
     })
@@ -40,15 +38,15 @@ export function useAuth() {
       .finally(() => setPending(false));
   }
 
-  function signInFake(params: Credentials): Promise<Auth> {
-    // const api = `${url}?username=${params.username}&password=${params.password}`;
-    const api = `${url}`;
+  // function signInFake(params: Credentials): Promise<Auth> {
+  //   // const api = `${url}?username=${params.username}&password=${params.password}`;
+  //   const api = `${url}`;
 
-    return Axios.get<Auth>(api).then(res => {
-      setItemLocalStorage("token", res.data.accessToken);
-      return res.data;
-    });
-  }
+  //   return Axios.get<Auth>(api).then(res => {
+  //     setItemLocalStorage("token", res.data.accessToken);
+  //     return res.data;
+  //   });
+  // }
 
   function signOut() {
     removeItemLocalStorage("token");
