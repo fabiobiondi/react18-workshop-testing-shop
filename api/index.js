@@ -16,7 +16,7 @@ function prettyPrint(object) {
 const server = jsonServer.create({
   noCors: true
 })
-const router = jsonServer.router(path.join(__dirname, '../server', 'db.json'))
+const router = jsonServer.router(path.join(process.cwd(), 'server', 'db.json'))
 const middlewares = jsonServer.defaults()
 
 server.db = router.db
@@ -25,10 +25,12 @@ server.use(middlewares)
 server.use(auth)
 server.use(router)
 
-server.listen(3001, () => {
-  prettyPrint(router.db.getState());
-  console.log('JSON Server is running')
-})
+if (require.main === module) {
+  server.listen(5000, () => {
+    prettyPrint(router.db.getState());
+    console.log('JSON Server is running')
+  })
+}
 
 module.exports = server;
 
