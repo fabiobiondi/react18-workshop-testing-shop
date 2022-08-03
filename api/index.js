@@ -39,9 +39,9 @@ server.get('/', (request, response) => {
 //   })
 // }
 
-export default server;
+// export default server;
 
-// export default function handler(request, response) {
-//   const { name } = request.query;
-//   response.status(200).send(`Hello ${name}!`);
-// }
+export default function handler(request, response) {
+  const { name } = request.query;
+  response.status(200).send(`Hello ${name}!`);
+}
