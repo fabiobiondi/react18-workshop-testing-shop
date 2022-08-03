@@ -1,5 +1,6 @@
 import {BASE_API} from "../../../src/core/config";
 import {productsMock} from "../mocks/products";
+import {mockProducts} from "../../../src/data/mock";
 
 describe('Cities Page', () => {
     let list;
@@ -72,6 +73,17 @@ describe('Cities Page', () => {
           // NOT WORK
           // .should('have.css', 'background-color', productsMock[productsMock.length-1].colors[0])
 
+    })
+
+    it(`should redirect to product page when an item is clicked`, () => {
+        list
+          .children()
+          .first()
+          .click()
+
+        cy.location().should((location) => {
+            expect(location.pathname).to.eq(`/shop/${mockProducts[0].id}`)
+        })
     })
 
 })

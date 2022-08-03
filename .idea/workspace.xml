@@ -54,7 +54,7 @@
       <updated>1659279867865</updated>
       <workItem from="1659279870776" duration="16000" />
       <workItem from="1659279891172" duration="16141000" />
-      <workItem from="1659345293359" duration="29546000" />
+      <workItem from="1659345293359" duration="29993000" />
     </task>
     <servers />
   </component>
@@ -75,6 +75,12 @@
           <line>3</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/cypress/e2e/1-basics/1.shop-list.cy.ts</url>
+          <line>78</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
