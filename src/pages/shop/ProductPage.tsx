@@ -96,7 +96,9 @@ function View({ product }: { product: Product}) {
               <div>
                 <h3 className="text-sm text-gray-900 font-medium">Color</h3>
 
-                <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-4">
+                <RadioGroup
+                  data-testid="colors"
+                  value={selectedColor} onChange={setSelectedColor} className="mt-4">
                   <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
                   <div className="flex items-center space-x-3">
                     {product.colors.map((color) => (
@@ -128,12 +130,14 @@ function View({ product }: { product: Product}) {
               </div>
 
               {/* Sizes */}
-              <div className="mt-10">
+              <div className="mt-10" >
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm text-gray-900 font-medium">Size</h3>
                 </div>
 
-                <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
+                <RadioGroup
+                  data-testid="sizes"
+                  value={selectedSize} onChange={setSelectedSize} className="mt-4">
                   <RadioGroup.Label className="sr-only">Choose a size</RadioGroup.Label>
                   <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
                     {product.sizes.map((size) => (

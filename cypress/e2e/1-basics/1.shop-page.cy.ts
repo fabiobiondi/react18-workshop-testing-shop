@@ -2,7 +2,7 @@ import {BASE_API} from "../../../src/core/config";
 import {productsMock} from "../mocks/products";
 import {mockProducts} from "../../../src/data/mock";
 
-describe('Cities Page', () => {
+describe('Shop Page', () => {
     let list;
 
     beforeEach(() => {
