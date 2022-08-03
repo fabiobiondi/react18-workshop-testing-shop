@@ -3,7 +3,7 @@ const auth = require('json-server-auth')
 const path = require('path')
 const chalk = require('chalk');
 
-function prettyPrint(argv, object, rules) {
+function prettyPrint(object) {
   console.log();
   console.log(chalk.bold('Resources'));
 
@@ -28,7 +28,7 @@ server.use(router)
 if (require.main === module) {
   // called directly i.e. "node app"
   server.listen(3001, () => {
-    prettyPrint(server, router.db.getState(), server._router.stack);
+    prettyPrint(router.db.getState());
     console.log('JSON Server is running')
   })
 } else {
