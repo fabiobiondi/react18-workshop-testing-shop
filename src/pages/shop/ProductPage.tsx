@@ -18,8 +18,8 @@ export default function ProductPage() {
 
 
 function View({ product }: { product: Product}) {
-  const [selectedColor, setSelectedColor] = useState<string>(product.colors[0]);
-  const [selectedSize, setSelectedSize] = useState<string>(product.sizes[0]);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const addToCart = useCart(s => s.addToCart);
 
   return (
@@ -182,12 +182,14 @@ function View({ product }: { product: Product}) {
                 </RadioGroup>
               </div>
 
-              <div
-                className="cursor-pointer mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => addToCart(product, selectedColor, selectedSize)}
+              <button
+                disabled={!selectedSize || !selectedColor}
+                type="button"
+                className="cursor-pointer mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:pointer-events-none"
+                onClick={() => addToCart(product, selectedColor!, selectedSize!)}
               >
                 Add to bag
-              </div>
+              </button>
             </form>
           </div>
 
