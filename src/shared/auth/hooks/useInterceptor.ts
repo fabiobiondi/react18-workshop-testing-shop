@@ -35,7 +35,6 @@ export const useInterceptor = () => {
       function (error) {
         // Any status codes that falls outside the range of 2xx cause this function to trigger
         console.log('ERROR', error)
-        setError(true);
         switch(error.response.status) {
           // token expired
           case 401:
@@ -44,7 +43,7 @@ export const useInterceptor = () => {
             break;
           // generic error
           default:
-            navigate('/login');
+            setError(true);
             break;
         }
         return Promise.reject(error);
