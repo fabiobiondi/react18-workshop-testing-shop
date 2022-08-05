@@ -1,5 +1,5 @@
 import {BASE_API} from "../../../src/core/config";
-import {productsMock} from "../mocks/products";
+import {productsMock} from "../mocks/products-mock";
 import {mockProducts} from "../../../src/data/mock";
 
 describe('Shop Page', () => {

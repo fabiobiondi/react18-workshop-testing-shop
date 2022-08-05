@@ -8,10 +8,11 @@ import Axios from 'axios';
 import { Auth, Credentials } from '../../../model/auth';
 import { getItemFromLocalStorage, removeItemLocalStorage, setItemLocalStorage } from '../../utils/localstorage.utils';
 import {useState} from "react";
+import {BASE_API} from "../../../core/config";
 
 export const url = 'http://localhost:3001/login';
 
-export function useAuth() {
+export function  useAuth() {
   const [pending, setPending] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
@@ -19,7 +20,7 @@ export function useAuth() {
     setError(false);
     setPending(true);
 
-    return Axios.post<Auth>(`${url}/login`, {
+    return Axios.post<Auth>(`${BASE_API}/login`, {
       email: params.username,
       password: params.password
     })

@@ -48,7 +48,10 @@ export default function AdminPage() {
                   </th>
                 </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody
+                  data-testid="order-list"
+                  className="bg-white divide-y divide-gray-200"
+                >
                 {orders.map((order) => (
                   <tr key={order.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
