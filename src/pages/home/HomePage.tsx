@@ -25,8 +25,8 @@
   }
   ```
 */
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
 import {
   CloudUploadIcon,
   CogIcon,
@@ -36,136 +36,141 @@ import {
   ServerIcon,
   ShieldCheckIcon,
   XIcon,
-} from '@heroicons/react/outline'
-import { ChevronRightIcon, ExternalLinkIcon } from '@heroicons/react/solid'
+} from "@heroicons/react/outline";
+import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/react/solid";
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
-]
+  { name: "Product", href: "#" },
+  { name: "Features", href: "#" },
+  { name: "Marketplace", href: "#" },
+  { name: "Company", href: "#" },
+];
 const features = [
   {
-    name: 'Jest Snapshot',
-    description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi vitae lobortis.',
+    name: "Jest Snapshot",
+    description:
+      "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi vitae lobortis.",
     icon: CloudUploadIcon,
   },
   {
-    name: 'Mock API with MSW',
-    description: 'Qui aut temporibus nesciunt vitae dicta repellat sit dolores pariatur. Temporibus qui illum aut.',
+    name: "Mock API with MSW",
+    description:
+      "Qui aut temporibus nesciunt vitae dicta repellat sit dolores pariatur. Temporibus qui illum aut.",
     icon: LockClosedIcon,
   },
   {
-    name: 'Use Spy',
-    description: 'Rerum quas incidunt deleniti quaerat suscipit mollitia. Amet repellendus ut odit dolores qui.',
+    name: "Use Spy",
+    description:
+      "Rerum quas incidunt deleniti quaerat suscipit mollitia. Amet repellendus ut odit dolores qui.",
     icon: RefreshIcon,
   },
   {
-    name: 'Mock Library',
-    description: 'Ullam laboriosam est voluptatem maxime ut mollitia commodi. Et dignissimos suscipit perspiciatis.',
+    name: "Mock Library",
+    description:
+      "Ullam laboriosam est voluptatem maxime ut mollitia commodi. Et dignissimos suscipit perspiciatis.",
     icon: ShieldCheckIcon,
   },
   {
-    name: 'Powerful API',
+    name: "Powerful API",
     description:
-      'Ab a facere voluptatem in quia corrupti veritatis aliquam. Veritatis labore quaerat ipsum quaerat id.',
+      "Ab a facere voluptatem in quia corrupti veritatis aliquam. Veritatis labore quaerat ipsum quaerat id.",
     icon: CogIcon,
   },
   {
-    name: 'something else',
-    description: 'Quia qui et est officia cupiditate qui consectetur. Ratione similique et impedit ea ipsum et.',
+    name: "something else",
+    description:
+      "Quia qui et est officia cupiditate qui consectetur. Ratione similique et impedit ea ipsum et.",
     icon: ServerIcon,
   },
-]
+];
 const blogPosts = [
   {
     id: 1,
-    title: 'Boost your conversion rate',
-    href: '#',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { name: 'Article', href: '#' },
+    title: "Boost your conversion rate",
+    href: "#",
+    date: "Mar 16, 2020",
+    datetime: "2020-03-16",
+    category: { name: "Article", href: "#" },
     imageUrl:
-      'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80',
+      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
     preview:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.',
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.",
     author: {
-      name: 'Roel Aufderehar',
+      name: "Roel Aufderehar",
       imageUrl:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      href: '#',
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      href: "#",
     },
-    readingLength: '6 min',
+    readingLength: "6 min",
   },
   {
     id: 2,
-    title: 'How to use search engine optimization to drive sales',
-    href: '#',
-    date: 'Mar 10, 2020',
-    datetime: '2020-03-10',
-    category: { name: 'Video', href: '#' },
+    title: "How to use search engine optimization to drive sales",
+    href: "#",
+    date: "Mar 10, 2020",
+    datetime: "2020-03-10",
+    category: { name: "Video", href: "#" },
     imageUrl:
-      'https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80',
+      "https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
     preview:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.',
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.",
     author: {
-      name: 'Brenna Goyette',
+      name: "Brenna Goyette",
       imageUrl:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      href: '#',
+        "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      href: "#",
     },
-    readingLength: '4 min',
+    readingLength: "4 min",
   },
   {
     id: 3,
-    title: 'Improve your customer experience',
-    href: '#',
-    date: 'Feb 12, 2020',
-    datetime: '2020-02-12',
-    category: { name: 'Case Study', href: '#' },
+    title: "Improve your customer experience",
+    href: "#",
+    date: "Feb 12, 2020",
+    datetime: "2020-02-12",
+    category: { name: "Case Study", href: "#" },
     imageUrl:
-      'https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80',
+      "https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
     preview:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.',
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
     author: {
-      name: 'Daniela Metz',
+      name: "Daniela Metz",
       imageUrl:
-        'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      href: '#',
+        "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      href: "#",
     },
-    readingLength: '11 min',
+    readingLength: "11 min",
   },
-]
+];
 const footerNavigation = {
   solutions: [
-    { name: 'Marketing', href: '#' },
-    { name: 'Analytics', href: '#' },
-    { name: 'Commerce', href: '#' },
-    { name: 'Insights', href: '#' },
+    { name: "Marketing", href: "#" },
+    { name: "Analytics", href: "#" },
+    { name: "Commerce", href: "#" },
+    { name: "Insights", href: "#" },
   ],
   support: [
-    { name: 'Pricing', href: '#' },
-    { name: 'Documentation', href: '#' },
-    { name: 'Guides', href: '#' },
-    { name: 'API Status', href: '#' },
+    { name: "Pricing", href: "#" },
+    { name: "Documentation", href: "#" },
+    { name: "Guides", href: "#" },
+    { name: "API Status", href: "#" },
   ],
   company: [
-    { name: 'About', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Partners', href: '#' },
+    { name: "About", href: "#" },
+    { name: "Blog", href: "#" },
+    { name: "Jobs", href: "#" },
+    { name: "Press", href: "#" },
+    { name: "Partners", href: "#" },
   ],
   legal: [
-    { name: 'Claim', href: '#' },
-    { name: 'Privacy', href: '#' },
-    { name: 'Terms', href: '#' },
+    { name: "Claim", href: "#" },
+    { name: "Privacy", href: "#" },
+    { name: "Terms", href: "#" },
   ],
   social: [
     {
-      name: 'Facebook',
-      href: '#',
+      name: "Facebook",
+      href: "#",
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -177,8 +182,8 @@ const footerNavigation = {
       ),
     },
     {
-      name: 'Instagram',
-      href: '#',
+      name: "Instagram",
+      href: "#",
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -190,8 +195,8 @@ const footerNavigation = {
       ),
     },
     {
-      name: 'Twitter',
-      href: '#',
+      name: "Twitter",
+      href: "#",
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
@@ -199,8 +204,8 @@ const footerNavigation = {
       ),
     },
     {
-      name: 'GitHub',
-      href: '#',
+      name: "GitHub",
+      href: "#",
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -212,8 +217,8 @@ const footerNavigation = {
       ),
     },
     {
-      name: 'Dribbble',
-      href: '#',
+      name: "Dribbble",
+      href: "#",
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -225,7 +230,7 @@ const footerNavigation = {
       ),
     },
   ],
-}
+};
 
 export default function HomePage() {
   return (
@@ -245,7 +250,10 @@ export default function HomePage() {
                         THIS IS A DEMO
                       </span>
                       <span className="ml-4 text-sm">Visit thez shop page</span>
-                      <ChevronRightIcon className="ml-2 w-5 h-5 text-gray-500" aria-hidden="true" />
+                      <ChevronRightIcon
+                        className="ml-2 w-5 h-5 text-gray-500"
+                        aria-hidden="true"
+                      />
                     </a>
                     <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
                       <span className="block">React 18 Shop Demo</span>
@@ -254,10 +262,10 @@ export default function HomePage() {
                       </span>
                     </h1>
                     <p className="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
-                      Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit
-                      sunt amet fugiat veniam occaecat fugiat.
+                      Anim aute id magna aliqua ad ad non deserunt sunt. Qui
+                      irure qui Lorem cupidatat commodo. Elit sunt amet fugiat
+                      veniam occaecat fugiat.
                     </p>
-
                   </div>
                 </div>
                 <div className="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
@@ -285,7 +293,8 @@ export default function HomePage() {
                   Cypress
                 </p>
                 <p className="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-                  Every page of this site includes E2E test build in Cypress and we also use it to test components in isolation.
+                  Every page of this site includes E2E test build in Cypress and
+                  we also use it to test components in isolation.
                 </p>
               </div>
               <div className="mt-12 -mb-10 sm:-mb-24 lg:-mb-80">
@@ -318,11 +327,18 @@ export default function HomePage() {
                         <div className="-mt-6">
                           <div>
                             <span className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-md shadow-lg">
-                              <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                              <feature.icon
+                                className="h-6 w-6 text-white"
+                                aria-hidden="true"
+                              />
                             </span>
                           </div>
-                          <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">{feature.name}</h3>
-                          <p className="mt-5 text-base text-gray-500">{feature.description}</p>
+                          <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
+                            {feature.name}
+                          </h3>
+                          <p className="mt-5 text-base text-gray-500">
+                            {feature.description}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -336,7 +352,10 @@ export default function HomePage() {
           <div className="pb-16 bg-gradient-to-r from-teal-500 to-cyan-600 lg:pb-0 lg:z-10 lg:relative">
             <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-8">
               <div className="relative lg:-my-8">
-                <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden" />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden"
+                />
                 <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:p-0 lg:h-full">
                   <div className="aspect-w-10 aspect-h-6 rounded-xl shadow-xl overflow-hidden sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
                     <img
@@ -360,13 +379,18 @@ export default function HomePage() {
                         <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                       </svg>
                       <p className="mt-6 text-2xl font-medium text-white">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed urna nulla vitae laoreet augue.
-                        Amet feugiat est integer dolor auctor adipiscing nunc urna, sit.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed urna nulla vitae laoreet augue. Amet feugiat est
+                        integer dolor auctor adipiscing nunc urna, sit.
                       </p>
                     </div>
                     <footer className="mt-6">
-                      <p className="text-base font-medium text-white">Judith Black</p>
-                      <p className="text-base font-medium text-cyan-100">CEO at PureInsights</p>
+                      <p className="text-base font-medium text-white">
+                        Judith Black
+                      </p>
+                      <p className="text-base font-medium text-cyan-100">
+                        CEO at PureInsights
+                      </p>
                     </footer>
                   </blockquote>
                 </div>
@@ -378,42 +402,66 @@ export default function HomePage() {
           <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
             <div className="relative">
               <div className="text-center mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
-                <h2 className="text-base font-semibold tracking-wider text-cyan-600 uppercase">Learn</h2>
+                <h2 className="text-base font-semibold tracking-wider text-cyan-600 uppercase">
+                  Learn
+                </h2>
                 <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
                   Helpful Resources
                 </p>
                 <p className="mt-5 mx-auto max-w-prose text-xl text-gray-500">
-                  Phasellus lorem quam molestie id quisque diam aenean nulla in. Accumsan in quis quis nunc, ullamcorper
-                  malesuada. Eleifend condimentum id viverra nulla.
+                  Phasellus lorem quam molestie id quisque diam aenean nulla in.
+                  Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend
+                  condimentum id viverra nulla.
                 </p>
               </div>
               <div className="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl">
                 {blogPosts.map((post) => (
-                  <div key={post.id} className="flex flex-col rounded-lg shadow-lg overflow-hidden">
+                  <div
+                    key={post.id}
+                    className="flex flex-col rounded-lg shadow-lg overflow-hidden"
+                  >
                     <div className="flex-shrink-0">
-                      <img className="h-48 w-full object-cover" src={post.imageUrl} alt="" />
+                      <img
+                        className="h-48 w-full object-cover"
+                        src={post.imageUrl}
+                        alt=""
+                      />
                     </div>
                     <div className="flex-1 bg-white p-6 flex flex-col justify-between">
                       <div className="flex-1">
                         <p className="text-sm font-medium text-cyan-600">
-                          <a href={post.category.href} className="hover:underline">
+                          <a
+                            href={post.category.href}
+                            className="hover:underline"
+                          >
                             {post.category.name}
                           </a>
                         </p>
                         <a href={post.href} className="block mt-2">
-                          <p className="text-xl font-semibold text-gray-900">{post.title}</p>
-                          <p className="mt-3 text-base text-gray-500">{post.preview}</p>
+                          <p className="text-xl font-semibold text-gray-900">
+                            {post.title}
+                          </p>
+                          <p className="mt-3 text-base text-gray-500">
+                            {post.preview}
+                          </p>
                         </a>
                       </div>
                       <div className="mt-6 flex items-center">
                         <div className="flex-shrink-0">
                           <a href={post.author.href}>
-                            <img className="h-10 w-10 rounded-full" src={post.author.imageUrl} alt={post.author.name} />
+                            <img
+                              className="h-10 w-10 rounded-full"
+                              src={post.author.imageUrl}
+                              alt={post.author.name}
+                            />
                           </a>
                         </div>
                         <div className="ml-3">
                           <p className="text-sm font-medium text-gray-900">
-                            <a href={post.author.href} className="hover:underline">
+                            <a
+                              href={post.author.href}
+                              className="hover:underline"
+                            >
                               {post.author.name}
                             </a>
                           </p>
@@ -449,11 +497,14 @@ export default function HomePage() {
                 <h2 className="text-base font-semibold uppercase tracking-wider text-gray-300">
                   Award winning support
                 </h2>
-                <p className="mt-2 text-white text-3xl font-extrabold tracking-tight sm:text-4xl">We’re here to help</p>
+                <p className="mt-2 text-white text-3xl font-extrabold tracking-tight sm:text-4xl">
+                  We’re here to help
+                </p>
                 <p className="mt-3 text-lg text-gray-300">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas tempus tellus etiam sed. Quam a
-                  scelerisque amet ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat quisque ut interdum
-                  tincidunt duis.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et,
+                  egestas tempus tellus etiam sed. Quam a scelerisque amet
+                  ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat
+                  quisque ut interdum tincidunt duis.
                 </p>
                 <div className="mt-8">
                   <div className="inline-flex rounded-md shadow">
@@ -462,7 +513,10 @@ export default function HomePage() {
                       className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
                     >
                       Visit the help center
-                      <ExternalLinkIcon className="-mr-1 ml-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+                      <ExternalLinkIcon
+                        className="-mr-1 ml-3 h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
                     </a>
                   </div>
                 </div>
@@ -483,11 +537,16 @@ export default function HomePage() {
                   alt="Company name"
                 />
                 <p className="text-gray-500 text-base">
-                  Making the world a better place through constructing elegant hierarchies.
+                  Making the world a better place through constructing elegant
+                  hierarchies.
                 </p>
                 <div className="flex space-x-6">
                   {footerNavigation.social.map((item) => (
-                    <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="text-gray-400 hover:text-gray-500"
+                    >
                       <span className="sr-only">{item.name}</span>
                       <item.icon className="h-6 w-6" aria-hidden="true" />
                     </a>
@@ -497,11 +556,16 @@ export default function HomePage() {
               <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
                 <div className="md:grid md:grid-cols-2 md:gap-8">
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Solutions</h3>
+                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                      Solutions
+                    </h3>
                     <ul className="mt-4 space-y-4">
                       {footerNavigation.solutions.map((item) => (
                         <li key={item.name}>
-                          <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                          <a
+                            href={item.href}
+                            className="text-base text-gray-500 hover:text-gray-900"
+                          >
                             {item.name}
                           </a>
                         </li>
@@ -509,11 +573,16 @@ export default function HomePage() {
                     </ul>
                   </div>
                   <div className="mt-12 md:mt-0">
-                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
+                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                      Support
+                    </h3>
                     <ul className="mt-4 space-y-4">
                       {footerNavigation.support.map((item) => (
                         <li key={item.name}>
-                          <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                          <a
+                            href={item.href}
+                            className="text-base text-gray-500 hover:text-gray-900"
+                          >
                             {item.name}
                           </a>
                         </li>
@@ -523,11 +592,16 @@ export default function HomePage() {
                 </div>
                 <div className="md:grid md:grid-cols-2 md:gap-8">
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                      Company
+                    </h3>
                     <ul className="mt-4 space-y-4">
                       {footerNavigation.company.map((item) => (
                         <li key={item.name}>
-                          <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                          <a
+                            href={item.href}
+                            className="text-base text-gray-500 hover:text-gray-900"
+                          >
                             {item.name}
                           </a>
                         </li>
@@ -535,11 +609,16 @@ export default function HomePage() {
                     </ul>
                   </div>
                   <div className="mt-12 md:mt-0">
-                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
+                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                      Legal
+                    </h3>
                     <ul className="mt-4 space-y-4">
                       {footerNavigation.legal.map((item) => (
                         <li key={item.name}>
-                          <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                          <a
+                            href={item.href}
+                            className="text-base text-gray-500 hover:text-gray-900"
+                          >
                             {item.name}
                           </a>
                         </li>
@@ -550,11 +629,13 @@ export default function HomePage() {
               </div>
             </div>
             <div className="mt-12 border-t border-gray-200 py-8">
-              <p className="text-base text-gray-400 xl:text-center">&copy; 2020 Workflow, Inc. All rights reserved.</p>
+              <p className="text-base text-gray-400 xl:text-center">
+                &copy; 2020 Workflow, Inc. All rights reserved.
+              </p>
             </div>
           </div>
         </footer>
       </div>
     </div>
-  )
+  );
 }

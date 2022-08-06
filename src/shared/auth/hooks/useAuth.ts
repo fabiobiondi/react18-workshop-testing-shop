@@ -28,12 +28,12 @@ export function useAuth() {
       email: params.username,
       password: params.password,
     })
-      .then(res => {
+      .then((res) => {
         console.log("ok");
         setItemLocalStorage("token", res.data.accessToken);
         return res.data;
       })
-      .catch(err => {
+      .catch((err) => {
         setError(true);
         return err;
       })
@@ -44,7 +44,7 @@ export function useAuth() {
     // const api = `${url}?username=${params.username}&password=${params.password}`;
     const api = `${url}`;
 
-    return Axios.get<Auth>(api).then(res => {
+    return Axios.get<Auth>(api).then((res) => {
       setItemLocalStorage("token", res.data.accessToken);
       return res.data;
     });

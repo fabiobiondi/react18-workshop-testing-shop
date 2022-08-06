@@ -17,8 +17,11 @@
     "axios": "^0.27.2",
     "chalk": "^4.1.2",
     "clsx": "^1.2.1",
+    "husky": "^8.0.1",
     "json-server": "^0.17.0",
     "json-server-auth": "^2.1.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
@@ -34,7 +37,8 @@
     "eject": "react-scripts eject",
     "server": "json-server-auth --watch server/db.json --port 3001",
     "server:noauth": "json-server --watch server/db.json --port 3001",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -63,5 +67,10 @@
     "msw": "^0.44.2",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.7"
+  },
+  "lint-staged": {
+    "{src,cypress}/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
   }
 }

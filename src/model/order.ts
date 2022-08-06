@@ -21,10 +21,9 @@ export interface Product {
 
 export interface Order {
   id: number;
-  status: 'pending' | 'shipped'
+  status: "pending" | "shipped";
   client: Client;
   items: Product[];
   totalCost: number;
   totalItems: number;
 }
-

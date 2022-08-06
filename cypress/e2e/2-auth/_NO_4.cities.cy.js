@@ -1,98 +1,91 @@
 /// <reference types="cypress" />
 
-const API = Cypress.env('REACT_APP_BASE_API');
+const API = Cypress.env("REACT_APP_BASE_API");
 
-describe('Cities Page', () => {
+describe("Cities Page", () => {
   beforeEach(() => {
     // Mock Login
-    cy.intercept(
-      `${API}/login`,
-      { method: 'GET' },
-      { accessToken: 123}
-    )
+    cy.intercept(`${API}/login`, { method: "GET" }, { accessToken: 123 });
 
     // Do login
-    cy.login('Fabio', 'Biondi')
+    cy.login("Fabio", "Biondi");
 
     // Mock Cities request and provide mock data
-    cy.intercept(`${API}/cities?q=`,
-      { method: 'GET' },
-      [
-        { id: 1, city: 'Milano' },
-        { id: 2, city: 'Roma' },
-      ]
-    )
+    cy.intercept(`${API}/cities?q=`, { method: "GET" }, [
+      { id: 1, city: "Milano" },
+      { id: 2, city: "Roma" },
+    ]);
 
     // Go to Cities Route
-    cy.visit('http://localhost:3000/cities');
-  })
+    cy.visit("http://localhost:3000/cities");
+  });
 
-  it('after login, go to cities', () => {
-
+  it("after login, go to cities", () => {
     cy.location().should((location) => {
-      console.log('QUI', location.pathname)
-      expect(location.pathname).to.eq('/cities')
-    })
-  })
+      console.log("QUI", location.pathname);
+      expect(location.pathname).to.eq("/cities");
+    });
+  });
 
-
-  it.only('edit a city', () => {
-
-    const currentCity = { id: 1, city: 'Milano' };
-    const newCityName = 'Trieste'
+  it.only("edit a city", () => {
+    const currentCity = { id: 1, city: "Milano" };
+    const newCityName = "Trieste";
 
     cy.intercept(
       `${API}/cities/${currentCity.id}`,
-      { method: 'PATCH' },
+      { method: "PATCH" },
       { ...currentCity, city: newCityName }
-    )
+    );
 
-      // MouseOver the CARET icon into the panel city panel we have just created
-    cy.contains(currentCity.city).parent().within(() => {
-      cy.get('svg').trigger('mouseover');
-    })
+    // MouseOver the CARET icon into the panel city panel we have just created
+    cy.contains(currentCity.city)
+      .parent()
+      .within(() => {
+        cy.get("svg").trigger("mouseover");
+      });
 
-    cy.contains('Edit').click()
+    cy.contains("Edit").click();
 
     cy.get('div[role="dialog"]').within(() => {
       cy.get('input[placeholder="edit city"]').clear();
       cy.get('input[placeholder="edit city"]').type(newCityName);
-      cy.contains('OK').click()
-    })
-  })
+      cy.contains("OK").click();
+    });
+  });
 
-  it('add and remove a city', () => {
-
+  it("add and remove a city", () => {
     const cityToAdd = {
-      city: 'Palermo',
-      id: 123
+      city: "Palermo",
+      id: 123,
     };
-    cy.intercept(`${API}/cities`, {method: 'POST'}, cityToAdd);
+    cy.intercept(`${API}/cities`, { method: "POST" }, cityToAdd);
 
     // ADD CITY
     // open ADD Modal
-    cy.get('span[title="add city"]').click()
+    cy.get('span[title="add city"]').click();
     // Write a text
-    cy.get('input[placeholder="add city"]').type(cityToAdd.city)
+    cy.get('input[placeholder="add city"]').type(cityToAdd.city);
     // Confirm
     cy.get('div[role="dialog"]').within(() => {
-      cy.contains('OK').click()
-    })
+      cy.contains("OK").click();
+    });
 
     // REMOVE CITY
-    cy.intercept(`${API}/cities/${cityToAdd.id}`, {method: 'DELETE'}, {})
+    cy.intercept(`${API}/cities/${cityToAdd.id}`, { method: "DELETE" }, {});
 
     // MouseOver the CARET icon into the panel city panel we have just created
-    cy.contains(cityToAdd.city).parent().within(() => {
-      cy.get('svg').trigger('mouseover');
-    })
+    cy.contains(cityToAdd.city)
+      .parent()
+      .within(() => {
+        cy.get("svg").trigger("mouseover");
+      });
 
     // click on delete and confirm
-    cy.contains('Delete').click()
-    cy.contains('OK').click()
-  })
+    cy.contains("Delete").click();
+    cy.contains("OK").click();
+  });
 
-  it('search a city', () => {
+  it("search a city", () => {
     // TODO MOCK DATA
 
     // Get Input Search
@@ -100,31 +93,25 @@ describe('Cities Page', () => {
     cy.get(input).clear();
 
     // SEARCH 1: Rome
-    const city1 = 'Roma'
-    cy.intercept(`${API}/cities?q=${city1}`,
-      { method: 'GET' },
-      [{ city: city1, id: 2 }]
-    )
-
+    const city1 = "Roma";
+    cy.intercept(`${API}/cities?q=${city1}`, { method: "GET" }, [
+      { city: city1, id: 2 },
+    ]);
 
     cy.get(input).type(city1);
-    cy.contains(city1)
+    cy.contains(city1);
     // Check if there is a static map with Roma
-    cy.get('img').should('have.attr', 'src').should('include', city1)
+    cy.get("img").should("have.attr", "src").should("include", city1);
 
     // SEARCH 2: Milano
-    const city2 = 'Milano';
-    cy.intercept(`${API}/cities?q=${city2}`,
-      { method: 'GET' },
-      [{ city: city2, id: 1 }]
-    )
+    const city2 = "Milano";
+    cy.intercept(`${API}/cities?q=${city2}`, { method: "GET" }, [
+      { city: city2, id: 1 },
+    ]);
 
-      cy.get(input).clear()
-      cy.get(input).type(city2);
-      // Check if there is a static map with Milano
-      cy.get('img').should('have.attr', 'src').should('include', city2)
-
-  })
-
-})
-
+    cy.get(input).clear();
+    cy.get(input).type(city2);
+    // Check if there is a static map with Milano
+    cy.get("img").should("have.attr", "src").should("include", city2);
+  });
+});

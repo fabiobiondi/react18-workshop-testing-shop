@@ -1,17 +1,16 @@
-import {useCartSummary} from "../store/cart-summary.store";
-import {Link} from "react-router-dom";
-import {useCart} from "../store/cart.store";
+import { useCartSummary } from "../store/cart-summary.store";
+import { Link } from "react-router-dom";
+import { useCart } from "../store/cart.store";
 
 const navigation = [
-  { name: 'Home', href: '/home' },
-  { name: 'Shop', href: '/shop' },
-  { name: 'Admin', href: '/login' },
-]
+  { name: "Home", href: "/home" },
+  { name: "Shop", href: "/shop" },
+  { name: "Admin", href: "/login" },
+];
 
 export default function NavBar() {
-  const openCartSummary = useCartSummary(state => state.openCartSummary)
-  const {totalItems} = useCart();
-
+  const openCartSummary = useCartSummary((state) => state.openCartSummary);
+  const { totalItems } = useCart();
 
   return (
     <header className="bg-slate-900 fixed w-full z-20 ">
@@ -28,12 +27,15 @@ export default function NavBar() {
             </Link>
             <div className="hidden ml-10 space-x-8 lg:block">
               {navigation.map((link) => (
-                <Link key={link.name} to={link.href} className="text-base font-medium text-white hover:text-indigo-50">
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="text-base font-medium text-white hover:text-indigo-50"
+                >
                   {link.name}
                 </Link>
               ))}
             </div>
-
           </div>
           <div className="ml-10 space-x-4">
             <div
@@ -46,12 +48,16 @@ export default function NavBar() {
         </div>
         <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
           {navigation.map((link) => (
-            <Link key={link.name} to={link.href} className="text-base font-medium text-white hover:text-indigo-50">
+            <Link
+              key={link.name}
+              to={link.href}
+              className="text-base font-medium text-white hover:text-indigo-50"
+            >
               {link.name}
             </Link>
           ))}
         </div>
       </nav>
     </header>
-  )
+  );
 }

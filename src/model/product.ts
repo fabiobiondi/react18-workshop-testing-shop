@@ -14,4 +14,3 @@ export interface Review {
   average: number;
   totalCount: number;
 }
-
