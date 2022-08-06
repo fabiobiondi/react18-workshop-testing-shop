@@ -12,7 +12,7 @@ export const mockProducts: Product[] = [
       'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
     ],
     price: 35,
-    colors: ['Black', 'gray', 'purple'],
+    colors: ['green', 'cyan', 'purple'],
     highlights: [
       'Hand cut and sewn locally',
       'Dyed with our proprietary colors',

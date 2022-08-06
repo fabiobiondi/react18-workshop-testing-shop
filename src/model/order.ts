@@ -23,7 +23,7 @@ export interface Order {
   id: number;
   status: 'pending' | 'shipped'
   client: Client;
-  products: Product[];
+  items: Product[];
   totalCost: number;
   totalItems: number;
 }

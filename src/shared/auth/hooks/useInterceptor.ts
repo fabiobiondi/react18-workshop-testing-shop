@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
-import { getItemFromLocalStorage } from "../../utils/localstorage.utils";
+import {getItemFromLocalStorage, removeItemLocalStorage} from "../../utils/localstorage.utils";
 import { useNavigate } from "react-router-dom";
 
 export const useInterceptor = () => {
@@ -35,8 +35,17 @@ export const useInterceptor = () => {
       function (error) {
         // Any status codes that falls outside the range of 2xx cause this function to trigger
         console.log('ERROR', error)
-        setError(true);
-        navigate('/login');
+        switch(error.response.status) {
+          // token expired
+          case 401:
+            removeItemLocalStorage('token')
+            navigate('/home');
+            break;
+          // generic error
+          default:
+            setError(true);
+            break;
+        }
         return Promise.reject(error);
       });
     },
