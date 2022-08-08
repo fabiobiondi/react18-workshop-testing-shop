@@ -4,50 +4,51 @@
  * BUT SHOULD WORKS FINE
  */
 
-import Axios from "axios";
 import { useState } from "react";
-import { BASE_API } from "../../../core/config";
-import { Auth, Credentials } from "../../../model/auth";
+import { Auth, Credentials, CredentialsDto } from "../../../model/auth";
+import { httpClient } from "../../utils/http.utils";
 import {
   getItemFromLocalStorage,
   removeItemLocalStorage,
   setItemLocalStorage,
 } from "../../utils/localstorage.utils";
 
-export const url = "http://localhost:3001/login";
-
 export function useAuth() {
   const [pending, setPending] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
-  function signIn(params: Credentials) {
+  function signIn(params: Credentials): Promise<Auth> {
     setError(false);
     setPending(true);
 
-    return Axios.post<Auth>(`${BASE_API}/login`, {
-      email: params.username,
-      password: params.password,
-    })
-      .then((res) => {
-        console.log("ok");
-        setItemLocalStorage("token", res.data.accessToken);
-        return res.data;
+    return httpClient
+      .post<Auth, CredentialsDto>(`/login`, {
+        email: params.username,
+        password: params.password,
       })
-      .catch((err) => {
+      .then(res => {
+        console.log("ok");
+        setItemLocalStorage("token", res.accessToken);
+        return res;
+      })
+      .catch(err => {
         setError(true);
-        return err;
+        console.log("error", err);
+        throw err;
       })
       .finally(() => setPending(false));
   }
 
   function signInFake(params: Credentials): Promise<Auth> {
-    // const api = `${url}?username=${params.username}&password=${params.password}`;
-    const api = `${url}`;
-
-    return Axios.get<Auth>(api).then((res) => {
-      setItemLocalStorage("token", res.data.accessToken);
-      return res.data;
-    });
+    return httpClient
+      .post<Auth, CredentialsDto>("register", {
+        email: params.username,
+        password: params.password,
+      })
+      .then(res => {
+        setItemLocalStorage("token", res.accessToken);
+        return res;
+      });
   }
 
   function signOut() {

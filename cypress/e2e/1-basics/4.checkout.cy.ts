@@ -1,10 +1,10 @@
-import { BASE_API } from "../../../src/core/config";
+import { APP_CONFIG } from "../../../src/core/config";
 import { Client } from "../../../src/model/order";
 
 describe("Cart Summary", () => {
   beforeEach(() => {
     cy.intercept(
-      `${BASE_API}/orders`,
+      `${APP_CONFIG.baseApiUrl}/orders`,
       { method: "POST" },
       {
         statusCode: 200,
@@ -29,7 +29,7 @@ describe("Cart Summary", () => {
   it("should send client data via POST to the service", () => {
     const formData = fillForm();
     cy.get("button[type=submit]").click();
-    cy.wait("@orderService").then((xhr) => {
+    cy.wait("@orderService").then(xhr => {
       expect(xhr.request.method).to.eq("POST");
       expect(xhr.request.body.client).deep.equals(formData);
     });
@@ -38,7 +38,7 @@ describe("Cart Summary", () => {
     fillForm();
     cy.get("button[type=submit]").should("be.enabled");
     cy.get("button[type=submit]").click();
-    cy.location().should((location) => {
+    cy.location().should(location => {
       expect(location.pathname).to.eq(`/checkout-confirm`);
     });
   });

@@ -152,7 +152,7 @@
       ],
       "totalCost": 125,
       "totalItems": 4,
-      "status": "pending"
+      "status": "shipped"
     },
     {
       "client": {
@@ -169,7 +169,7 @@
       },
       "totalCost": 95,
       "totalItems": 4,
-      "status": "shipped",
+      "status": "pending",
       "items": [
         {
           "productId": 2,
@@ -191,6 +191,33 @@
         }
       ],
       "id": 2
+    },
+    {
+      "date": 1659985733811,
+      "client": {
+        "first_name": "Luca",
+        "last_name": "Del Puppo",
+        "email": "luca.delpuppo@flowing.it",
+        "country": "Italy",
+        "street": "vv",
+        "city": "v",
+        "state_prov": "v",
+        "zip": "v",
+        "notification_email": true,
+        "notification_sms": false
+      },
+      "status": "shipped",
+      "totalCost": 35,
+      "totalItems": 1,
+      "items": [
+        {
+          "productId": 1,
+          "color": "purple",
+          "size": "XS",
+          "qty": 1
+        }
+      ],
+      "id": 3
     }
   ]
 }

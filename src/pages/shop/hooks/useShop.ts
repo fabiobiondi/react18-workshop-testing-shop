@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { BASE_API } from "../../../core/config";
 import { Product } from "../../../model/product";
+import { httpClient } from "../../../shared/utils/http.utils";
 
 export function useShop() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    axios
-      .get<Product[]>(`${BASE_API}/products`)
-      .then((res) => setProducts(res.data));
+    httpClient.get<Product[]>(`/products`).then(res => setProducts(res));
   }, []);
 
   return {

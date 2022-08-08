@@ -1,11 +1,14 @@
-import { BASE_API } from "../../../src/core/config";
+import { APP_CONFIG } from "../../../src/core/config";
 import { productsMock } from "../mocks/products-mock";
-import { mockProducts } from "../../../src/data/mock";
 
 describe("Shop Page: default behaviors", () => {
   beforeEach(() => {
     // Mock Products request and provide mock data
-    cy.intercept(`${BASE_API}/products/1`, { method: "GET" }, productsMock[0]);
+    cy.intercept(
+      `${APP_CONFIG.baseApiUrl}/products/1`,
+      { method: "GET" },
+      productsMock[0]
+    );
     // Visit shop page
     cy.visit("http://localhost:3000/shop/1");
   });
@@ -28,7 +31,11 @@ describe("Shop Page: default behaviors", () => {
 describe("Shop Page: Add to Cart", () => {
   beforeEach(() => {
     // Mock Products request and provide mock data
-    cy.intercept(`${BASE_API}/products/1`, { method: "GET" }, productsMock[0]);
+    cy.intercept(
+      `${APP_CONFIG.baseApiUrl}/products/1`,
+      { method: "GET" },
+      productsMock[0]
+    );
     // Visit shop page
     cy.visit("http://localhost:3000/shop/1");
 

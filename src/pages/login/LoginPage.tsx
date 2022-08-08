@@ -1,11 +1,10 @@
-import axios, { AxiosError } from "axios";
 import clsx from "clsx";
 import React, { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BASE_API } from "../../core/config";
 import { Credentials } from "../../model/auth";
 import { useAuth } from "../../shared/auth/hooks/useAuth";
 import { Spinner } from "../../shared/components/Spinner";
+import { httpClient } from "../../shared/utils/http.utils";
 
 const INITIAL_STATE: Credentials = {
   username: "demo@demo.com",
@@ -37,11 +36,8 @@ export default function LoginPage() {
     e.preventDefault();
 
     signIn(formData)
-      .then((res) => {
-        // TODO: mmm... read fix below
-        if (!(res instanceof AxiosError)) {
-          navigate("/admin");
-        }
+      .then(() => {
+        navigate("/admin");
       })
       // TO FIX: dunno why catch callback is not invoked
       .catch(() => console.log("never here....mmm!"));
@@ -52,7 +48,7 @@ export default function LoginPage() {
   const isValid = isUserNameValid && isPassValid;
 
   function registerUser() {
-    axios.post(`${BASE_API}/register`, {
+    httpClient.post(`/register`, {
       email: "demo@demo.com",
       password: "123456",
     });

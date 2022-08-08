@@ -1,8 +1,7 @@
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { BASE_API } from "../../../core/config";
+import { useNavigate, useParams } from "react-router-dom";
 import { Product } from "../../../model/product";
+import { httpClient } from "../../../shared/utils/http.utils";
 
 export function useProductPage() {
   const { id } = useParams<{ id: string }>();
@@ -11,9 +10,9 @@ export function useProductPage() {
 
   useEffect(() => {
     if (id) {
-      axios
-        .get<Product>(`${BASE_API}/products/${+id}`)
-        .then((res) => setProduct(res.data))
+      httpClient
+        .get<Product>(`/products/${+id}`)
+        .then(res => setProduct(res))
         .catch(() => navigate("/shop"));
     }
   }, [id, navigate]);

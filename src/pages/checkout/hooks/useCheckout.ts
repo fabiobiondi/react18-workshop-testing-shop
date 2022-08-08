@@ -1,8 +1,7 @@
-import { Client, Order } from "../../../model/order";
-import axios from "axios";
-import { BASE_API } from "../../../core/config";
-import { useCart } from "../../../core/store/cart.store";
 import { useState } from "react";
+import { useCart } from "../../../core/store/cart.store";
+import { Client, Order } from "../../../model/order";
+import { httpClient } from "../../../shared/utils/http.utils";
 
 export function useCheckout() {
   const { totalCost, totalItems, items, cleanCart } = useCart();
@@ -13,15 +12,15 @@ export function useCheckout() {
     setError(false);
     setError(true);
 
-    return axios
-      .post<Order>(`${BASE_API}/orders`, {
+    return httpClient
+      .post<Order>(`/orders`, {
         date: Date.now(),
         client,
         status: "pending",
         totalCost: totalCost(),
         totalItems: totalItems(),
 
-        items: items.map((item) => {
+        items: items.map(item => {
           return {
             productId: item.product.id,
             color: item.color,

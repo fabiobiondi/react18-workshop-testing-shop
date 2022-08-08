@@ -1,7 +1,7 @@
 // const API = Cypress.env('REACT_APP_BASE_API');
 import "cypress-localstorage-commands";
 
-import { BASE_API } from "../../../src/core/config";
+import { APP_CONFIG } from "../../../src/core/config";
 import { ordersMock } from "../mocks/orders-mock";
 
 describe("Admin: Order Page", () => {
@@ -9,10 +9,14 @@ describe("Admin: Order Page", () => {
     // cy.restoreLocalStorage();
 
     // Mock Login
-    cy.intercept(`${BASE_API}/660/orders`, { method: "GET" }, ordersMock);
+    cy.intercept(
+      `${APP_CONFIG.baseApiUrl}/660/orders`,
+      { method: "GET" },
+      ordersMock
+    );
 
     cy.intercept(
-      `${BASE_API}/login`,
+      `${APP_CONFIG.baseApiUrl}/login`,
       { method: "POST" },
       { accessToken: 123, user: { email: "xyz@abc.com", id: 1 } }
     );
@@ -59,7 +63,7 @@ describe("Admin: Order Page", () => {
   it(`should toggle status`, () => {
     // Mock Login
     cy.intercept(
-      `${BASE_API}/660/orders/${ordersMock[0].id}`,
+      `${APP_CONFIG.baseApiUrl}/660/orders/${ordersMock[0].id}`,
       { method: "PATCH" },
       {
         body: {

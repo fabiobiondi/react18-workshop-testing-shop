@@ -2,10 +2,10 @@
 
 // TODO
 
-import { BASE_API } from "../../../src/core/config";
+import { APP_CONFIG } from "../../../src/core/config";
 import { ordersMock } from "../mocks/orders-mock";
 
-describe.skip("Login", () => {
+describe("Login", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/login");
     cy.get('input[name="username"]').clear();
@@ -26,12 +26,16 @@ describe.skip("Login", () => {
 
   it("login button is enabled when form is not valid", () => {
     cy.intercept(
-      `${BASE_API}/login`,
+      `${APP_CONFIG.baseApiUrl}/login`,
       { method: "POST" },
       { accessToken: 123, user: { email: "xyz@abc.com", id: 1 } }
     );
 
-    cy.intercept(`${BASE_API}/660/orders`, { method: "GET" }, ordersMock);
+    cy.intercept(
+      `${APP_CONFIG.baseApiUrl}/660/orders`,
+      { method: "GET" },
+      ordersMock
+    );
 
     cy.get('input[name="username"]').type("mario@rossi.it");
     cy.get('input[name="password"]').type("123456");

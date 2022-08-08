@@ -1,11 +1,15 @@
-import { BASE_API } from "../../../src/core/config";
-import { productsMock } from "../mocks/products-mock";
+import { APP_CONFIG } from "../../../src/core/config";
 import { mockProducts } from "../../../src/data/mock";
+import { productsMock } from "../mocks/products-mock";
 
 describe("Cart Summary", () => {
   beforeEach(() => {
     // Mock Products request and provide mock data
-    cy.intercept(`${BASE_API}/products/1`, { method: "GET" }, productsMock[0]);
+    cy.intercept(
+      `${APP_CONFIG.baseApiUrl}/products/1`,
+      { method: "GET" },
+      productsMock[0]
+    );
     // Visit shop page
     cy.visit("http://localhost:3000/shop/1");
 
@@ -78,7 +82,7 @@ describe("Cart Summary", () => {
       cy.contains("Checkout").click();
     });
 
-    cy.location().should((location) => {
+    cy.location().should(location => {
       expect(location.pathname).to.eq(`/checkout`);
     });
   });

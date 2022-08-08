@@ -1,13 +1,17 @@
-import { BASE_API } from "../../../src/core/config";
-import { productsMock } from "../mocks/products-mock";
+import { APP_CONFIG } from "../../../src/core/config";
 import { mockProducts } from "../../../src/data/mock";
+import { productsMock } from "../mocks/products-mock";
 
 describe("Shop Page", () => {
   let list;
 
   beforeEach(() => {
     // Mock Products request and provide mock data
-    cy.intercept(`${BASE_API}/products`, { method: "GET" }, productsMock);
+    cy.intercept(
+      `${APP_CONFIG.baseApiUrl}/products`,
+      { method: "GET" },
+      productsMock
+    );
     // Visit shop page
     cy.visit("http://localhost:3000/shop");
     // get list reference
@@ -73,7 +77,7 @@ describe("Shop Page", () => {
   it(`should redirect to product page when an item is clicked`, () => {
     list.children().first().click();
 
-    cy.location().should((location) => {
+    cy.location().should(location => {
       expect(location.pathname).to.eq(`/shop/${mockProducts[0].id}`);
     });
   });

@@ -1,12 +1,12 @@
 import { renderHook } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { BASE_API } from "../../../core/config";
+import { APP_CONFIG } from "../../../core/config";
 import { useAuth } from "./useAuth";
 
 const server = setupServer(
   // capture "GET /greeting" requests
-  rest.get(`${BASE_API}/login`, (req, res, ctx) => {
+  rest.get(`${APP_CONFIG.baseApiUrl}/login`, (req, res, ctx) => {
     // respond using a mocked JSON body
     return res(ctx.json({ accessToken: "123" }));
   })
@@ -28,7 +28,7 @@ test.skip("signIn returns a promise with data if success", async () => {
 
 test.skip("signin returns error if there are server problem", async () => {
   server.use(
-    rest.get(`${BASE_API}/login`, (req, res, ctx) => {
+    rest.get(`${APP_CONFIG.baseApiUrl}/login`, (req, res, ctx) => {
       return res(
         ctx.status(404),
         ctx.json({
