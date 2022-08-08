@@ -17,26 +17,24 @@ export function useAuth() {
   const [pending, setPending] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
-  function signIn(params: Credentials): Promise<Auth> {
+  async function signIn(params: Credentials): Promise<Auth> {
     setError(false);
     setPending(true);
 
-    return httpClient
-      .post<Auth, CredentialsDto>(`/login`, {
+    try {
+      const res = await httpClient.post<Auth, CredentialsDto>(`/login`, {
         email: params.username,
         password: params.password,
-      })
-      .then(res => {
-        console.log("ok");
-        setItemLocalStorage("token", res.accessToken);
-        return res;
-      })
-      .catch(err => {
-        setError(true);
-        console.log("error", err);
-        throw err;
-      })
-      .finally(() => setPending(false));
+      });
+      setItemLocalStorage("token", res.accessToken);
+      return res;
+    } catch (err) {
+      setError(true);
+      console.log("error", err);
+      throw err;
+    } finally {
+      setPending(false);
+    }
   }
 
   function signInFake(params: Credentials): Promise<Auth> {

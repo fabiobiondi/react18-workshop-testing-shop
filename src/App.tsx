@@ -1,16 +1,15 @@
-import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import CartSummaryPanel from "./core/components/CartSummary";
 import NavBar from "./core/components/NavBar";
-import ShopPage from "./pages/shop/ShopPage";
-import CartSummaryPanel from "./core/components/CartSummaryPanel";
 import AdminPage from "./pages/admin/AdminPage";
-import ProductPage from "./pages/shop/ProductPage";
 import CheckoutConfirmPage from "./pages/checkout/CheckoutConfirmPage";
-import HomePage from "./pages/home/HomePage";
 import CheckoutPage from "./pages/checkout/CheckoutPage";
+import HomePage from "./pages/home/HomePage";
 import LoginPage from "./pages/login/LoginPage";
-import { PrivateRoute } from "./shared/auth/components/PrivateRoute";
+import ProductPage from "./pages/shop/ProductPage";
+import ShopPage from "./pages/shop/ShopPage";
 import { Interceptor } from "./shared/auth/components/Interceptor";
+import { PrivateRoute } from "./shared/auth/components/PrivateRoute";
 
 function App() {
   return (

@@ -1,71 +1,37 @@
-import { FormEvent, useState } from "react";
 import clsx from "clsx";
+import { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { Client } from "../../model/order";
-import { useCheckout } from "./hooks/useCheckout";
-
-const initialState: Omit<Client, "id"> = {
-  first_name: "",
-  last_name: "",
-  email: "",
-  country: "",
-  street: "",
-  city: "",
-  state_prov: "",
-  zip: "",
-  notification_email: true,
-  notification_sms: false,
-};
+import { useCheckoutForm } from "./hooks/useCheckoutForm";
 
 export default function CheckoutPage() {
-  const [formData, setFormData] = useState(initialState);
-  const [dirty, setDirty] = useState(false);
-  const { sendOrder } = useCheckout();
+  const { formData, dirty, formValidation, isFormValid, validateName, updateField, reset, submit } = useCheckoutForm();
   const navigate = useNavigate();
 
   function onChangeHandler(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
     const name = e.currentTarget.name;
+    if (!validateName(name)) {
+      throw new Error(`Invalid name: ${name}`);
+    }
     const value =
       e.target.type === "checkbox"
         ? (e.target as HTMLInputElement).checked
         : e.target.value;
-    setFormData((s) => ({ ...s, [name]: value }));
-    setDirty(true);
+
+    updateField(name, value);
   }
 
-  function doResetForm() {
-    setFormData({ ...initialState });
-  }
-
-  function onConfirmFormHandler(e: FormEvent<HTMLFormElement>) {
+  async function onConfirmFormHandler(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    sendOrder(formData).then(() => {
+    try {
+      await submit()
       navigate("/checkout-confirm");
-      doResetForm();
-    });
+    } catch (error) {
+      console.log(error);
+    }
   }
-
-  // ENHANCE: we could create a validation object and / or move it to a separated module
-  const isFirstNameValid = !!formData.first_name.length;
-  const isLastNameValid = !!formData.last_name.length;
-  const isEmailValid = !!formData.email.length;
-  const isCityValid = !!formData.city.length;
-  const isStreetValid = !!formData.street.length;
-  const isCountryValid = !!formData.country.length;
-  const isStateProvValid = !!formData.state_prov.length;
-  const isZipValid = !!formData.zip.length;
-  const isFormValid =
-    isFirstNameValid &&
-    isLastNameValid &&
-    isEmailValid &&
-    isCityValid &&
-    isStateProvValid &&
-    isZipValid &&
-    isCountryValid &&
-    isStreetValid;
 
   return (
     <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -97,7 +63,7 @@ export default function CheckoutPage() {
                       value={formData.first_name}
                       onChange={onChangeHandler}
                       className={clsx("form-input", {
-                        error: !isFirstNameValid && dirty,
+                        error: !!formValidation.first_name && dirty,
                       })}
                     />
                   </div>
@@ -116,7 +82,7 @@ export default function CheckoutPage() {
                       value={formData.last_name}
                       onChange={onChangeHandler}
                       className={clsx("form-input", {
-                        error: !isLastNameValid && dirty,
+                        error: !!formValidation.last_name && dirty,
                       })}
                     />
                   </div>
@@ -135,7 +101,7 @@ export default function CheckoutPage() {
                       value={formData.email}
                       onChange={onChangeHandler}
                       className={clsx("form-input", {
-                        error: !isEmailValid && dirty,
+                        error: !!formValidation.email && dirty,
                       })}
                     />
                   </div>
@@ -153,7 +119,7 @@ export default function CheckoutPage() {
                       value={formData.country}
                       onChange={onChangeHandler}
                       className={clsx("form-input", {
-                        error: !isCountryValid && dirty,
+                        error: !!formValidation.country && dirty,
                       })}
                     >
                       <option value="">Select Country</option>
@@ -178,7 +144,7 @@ export default function CheckoutPage() {
                       value={formData.street}
                       onChange={onChangeHandler}
                       className={clsx("form-input", {
-                        error: !isStreetValid && dirty,
+                        error: !!formValidation.street && dirty,
                       })}
                     />
                   </div>
@@ -197,7 +163,7 @@ export default function CheckoutPage() {
                       value={formData.city}
                       onChange={onChangeHandler}
                       className={clsx("form-input", {
-                        error: !isCityValid && dirty,
+                        error: !!formValidation.city && dirty,
                       })}
                     />
                   </div>
@@ -216,7 +182,7 @@ export default function CheckoutPage() {
                       value={formData.state_prov}
                       onChange={onChangeHandler}
                       className={clsx("form-input", {
-                        error: !isStateProvValid && dirty,
+                        error: !!formValidation.state_prov && dirty,
                       })}
                     />
                   </div>
@@ -235,7 +201,7 @@ export default function CheckoutPage() {
                       value={formData.zip}
                       onChange={onChangeHandler}
                       className={clsx("form-input", {
-                        error: !isZipValid && dirty,
+                        error: !!formValidation.zip && dirty,
                       })}
                     />
                   </div>
@@ -316,7 +282,7 @@ export default function CheckoutPage() {
         <div className="flex justify-end">
           <button
             type="button"
-            onClick={doResetForm}
+            onClick={reset}
             className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Clean

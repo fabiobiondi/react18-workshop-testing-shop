@@ -169,7 +169,7 @@
       },
       "totalCost": 95,
       "totalItems": 4,
-      "status": "pending",
+      "status": "shipped",
       "items": [
         {
           "productId": 2,
@@ -218,6 +218,26 @@
         }
       ],
       "id": 3
+    },
+    {
+      "date": 1659992367365,
+      "client": {
+        "first_name": "Luca",
+        "last_name": "Del Puppo",
+        "email": "luca.delpuppo+001@flowing.it",
+        "country": "Italy",
+        "street": "vv",
+        "city": "MILANO",
+        "state_prov": "v",
+        "zip": "30150",
+        "notification_email": false,
+        "notification_sms": false
+      },
+      "status": "pending",
+      "totalCost": 0,
+      "totalItems": 0,
+      "items": [],
+      "id": 4
     }
   ]
 }

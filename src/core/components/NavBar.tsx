@@ -1,5 +1,5 @@
-import { useCartSummary } from "../store/cart-summary.store";
 import { Link } from "react-router-dom";
+import { useCartSummary } from "../store/cart-summary.store";
 import { useCart } from "../store/cart.store";
 
 const navigation = [

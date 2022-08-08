@@ -1,14 +1,13 @@
-import clsx from "clsx";
 import {
-  ArrowCircleRightIcon,
   PencilAltIcon,
-  TrashIcon,
+  TrashIcon
 } from "@heroicons/react/solid";
-import { useAdmin } from "./hooks/useAdmin";
-import DropDown from "../../shared/components/DropDown";
-import { DialogConfirm } from "../../shared/components/DialogConfirm";
+import clsx from "clsx";
 import { useState } from "react";
 import { Order } from "../../model/order";
+import { DialogConfirm } from "../../shared/components/DialogConfirm";
+import DropDown from "../../shared/components/DropDown";
+import { useAdmin } from "./hooks/useAdmin";
 
 export default function AdminPage() {
   const { orders, actions } = useAdmin();

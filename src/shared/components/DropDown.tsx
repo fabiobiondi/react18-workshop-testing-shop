@@ -1,17 +1,14 @@
-import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
+import clsx from "clsx";
+import { Fragment } from "react";
 
 export interface DropDownProps {
   defaultLabel: string;
   items: {
     label: string;
     action: () => void;
-    Icon: any;
+    Icon: React.FC;
   }[];
 }
 
@@ -52,12 +49,10 @@ export default function DropDown(props: DropDownProps) {
                       {({ active }) => (
                         <a
                           onClick={item.action}
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "group flex items-center px-4 py-2 text-sm"
-                          )}
+                          className={clsx("group flex items-center px-4 py-2 text-sm", {
+                            "bg-gray-100 text-gray-900": active,
+                            "text-gray-700": !active,
+                          })}
                         >
                           <Icon />
                           {item.label}
