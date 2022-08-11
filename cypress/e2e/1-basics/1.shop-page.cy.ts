@@ -1,5 +1,4 @@
-import { APP_CONFIG } from "../../../src/core/config";
-import { mockProducts } from "../../../src/data/mock";
+import { mockProducts } from "../../../mocks";
 import { productsMock } from "../mocks/products-mock";
 
 describe("Shop Page", () => {
@@ -8,12 +7,12 @@ describe("Shop Page", () => {
   beforeEach(() => {
     // Mock Products request and provide mock data
     cy.intercept(
-      `${APP_CONFIG.baseApiUrl}/products`,
+      `${Cypress.env("REACT_APP_API_URL")}/products`,
       { method: "GET" },
       productsMock
     );
     // Visit shop page
-    cy.visit("http://localhost:3000/shop");
+    cy.visit(`${Cypress.env("REACT_APP_URL")}/shop`);
     // get list reference
     list = cy.get('[data-testid="products-list"]');
   });

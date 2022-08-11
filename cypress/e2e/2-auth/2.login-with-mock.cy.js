@@ -3,7 +3,7 @@
 describe("Login Mock", () => {
   it("after login, go to homepage", () => {
     cy.intercept(
-      "http://localhost:3001/login",
+      `${Cypress.env("REACT_APP_API_URL")}/login`,
       { method: "GET" },
       { accessToken: 123 }
     );
@@ -17,7 +17,7 @@ describe("Login Mock", () => {
 
   it("after login, save token in localstorage", () => {
     cy.intercept(
-      "http://localhost:3001/login",
+      `${Cypress.env("REACT_APP_API_URL")}/login`,
       { method: "GET" },
       { accessToken: 123 }
     );
@@ -37,7 +37,7 @@ describe("Login Mock", () => {
 
   it("after login success should not display an error message", () => {
     cy.intercept(
-      "http://localhost:3001/login",
+      `${Cypress.env("REACT_APP_API_URL")}/login`,
       { method: "GET" },
       { accessToken: 123 }
     );
@@ -46,7 +46,7 @@ describe("Login Mock", () => {
   });
 
   it("when login error display a message", () => {
-    cy.intercept("GET", "http://localhost:3001/login", {
+    cy.intercept("GET", `${Cypress.env("REACT_APP_API_URL")}/login`, {
       statusCode: 404,
       body: { error: "ahia!" },
     }).as("end");

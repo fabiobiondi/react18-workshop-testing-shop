@@ -17,7 +17,7 @@ describe("Cities Page", () => {
     ]);
 
     // Go to Cities Route
-    cy.visit("http://localhost:3000/cities");
+    cy.visit(`${Cypress.env("REACT_APP_URL")}/cities`);
   });
 
   it("after login, go to cities", () => {

@@ -16,7 +16,7 @@ describe("Cities Page", () => {
 
     // Mock Cities request and provide mock data
     cy.intercept(`${API}/users`, { method: "GET" }, mockData);
-    cy.visit("http://localhost:3000/users");
+    cy.visit(`${Cypress.env("REACT_APP_URL")}/users`);
   });
 
   it(`should display ${mockData.length} elements in the list`, () => {

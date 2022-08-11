@@ -1,16 +1,15 @@
-import { APP_CONFIG } from "../../../src/core/config";
 import { productsMock } from "../mocks/products-mock";
 
 describe("Shop Page: default behaviors", () => {
   beforeEach(() => {
     // Mock Products request and provide mock data
     cy.intercept(
-      `${APP_CONFIG.baseApiUrl}/products/1`,
+      `${Cypress.env("REACT_APP_API_URL")}/products/1`,
       { method: "GET" },
       productsMock[0]
     );
     // Visit shop page
-    cy.visit("http://localhost:3000/shop/1");
+    cy.visit(`${Cypress.env("REACT_APP_URL")}/shop/1`);
   });
 
   it(`should disabled "add to bag" button before the selection of size and color`, () => {
@@ -32,12 +31,12 @@ describe("Shop Page: Add to Cart", () => {
   beforeEach(() => {
     // Mock Products request and provide mock data
     cy.intercept(
-      `${APP_CONFIG.baseApiUrl}/products/1`,
+      `${Cypress.env("REACT_APP_API_URL")}/products/1`,
       { method: "GET" },
       productsMock[0]
     );
     // Visit shop page
-    cy.visit("http://localhost:3000/shop/1");
+    cy.visit(`${Cypress.env("REACT_APP_URL")}/shop/1`);
 
     // select first color
     cy.get('[data-testid="colors"]')

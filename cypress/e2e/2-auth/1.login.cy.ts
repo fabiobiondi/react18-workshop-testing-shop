@@ -2,12 +2,11 @@
 
 // TODO
 
-import { APP_CONFIG } from "../../../src/core/config";
 import { ordersMock } from "../mocks/orders-mock";
 
 describe("Login", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/login");
+    cy.visit(`${Cypress.env("REACT_APP_URL")}/login`);
     cy.get('input[name="username"]').clear();
     cy.get('input[name="password"]').clear();
 
@@ -26,13 +25,13 @@ describe("Login", () => {
 
   it("login button is enabled when form is not valid", () => {
     cy.intercept(
-      `${APP_CONFIG.baseApiUrl}/login`,
+      `${Cypress.env("REACT_APP_API_URL")}/login`,
       { method: "POST" },
       { accessToken: 123, user: { email: "xyz@abc.com", id: 1 } }
     );
 
     cy.intercept(
-      `${APP_CONFIG.baseApiUrl}/660/orders`,
+      `${Cypress.env("REACT_APP_API_URL")}/660/orders`,
       { method: "GET" },
       ordersMock
     );

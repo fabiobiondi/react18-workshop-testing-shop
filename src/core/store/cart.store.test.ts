@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import { mockProducts } from "../../mocks/products";
+import { mockProducts } from "../../../mocks";
 import { useCart } from "./cart.store";
 
 const product = mockProducts[0];

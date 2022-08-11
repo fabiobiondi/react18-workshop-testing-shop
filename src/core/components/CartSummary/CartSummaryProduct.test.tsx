@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { mockProducts } from "../../../mocks/products";
+import { mockProducts } from "../../../../mocks";
 import CartSummaryProduct from "./CartSummaryProduct";
 
 

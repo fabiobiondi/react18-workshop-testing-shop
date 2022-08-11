@@ -1,10 +1,9 @@
-import { APP_CONFIG } from "../../../src/core/config";
 import { Client } from "../../../src/model/order";
 
 describe("Cart Summary", () => {
   beforeEach(() => {
     cy.intercept(
-      `${APP_CONFIG.baseApiUrl}/orders`,
+      `${Cypress.env("REACT_APP_API_URL")}/orders`,
       { method: "POST" },
       {
         statusCode: 200,
@@ -14,7 +13,7 @@ describe("Cart Summary", () => {
       }
     ).as("orderService");
 
-    cy.visit("http://localhost:3000/checkout");
+    cy.visit(`${Cypress.env("REACT_APP_URL")}/checkout`);
   });
 
   it('should disabled "Send Order" button when form is opened first time and invalid', () => {
