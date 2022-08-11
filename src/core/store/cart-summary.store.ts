@@ -6,7 +6,7 @@ interface CartSummaryState {
   closeCartSummary: () => void;
 }
 
-export const useCartSummary = create<CartSummaryState>((set) => ({
+export const useCartSummary = create<CartSummaryState>(set => ({
   isOpen: false,
   openCartSummary: () => set({ isOpen: true }),
   closeCartSummary: () => set({ isOpen: false }),

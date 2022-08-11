@@ -296,10 +296,6 @@ export default function CheckoutPage() {
           </button>
         </div>
       </form>
-
-      {/*
-      <pre>{JSON.stringify(formData, null, 2)}</pre>
-*/}
     </div>
   );
 }

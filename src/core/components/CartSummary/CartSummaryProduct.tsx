@@ -12,6 +12,7 @@ export default function CartSummaryProduct(
   { cartItem, decrement, increment, remove }: CartSummaryProductProps
 ) {
   return <li
+    data-testid="cart-summary-product"
     className="flex py-6"
   >
     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -25,10 +26,9 @@ export default function CartSummaryProduct(
     <div className="ml-4 flex flex-1 flex-col">
       <div>
         <div className="flex justify-between text-base font-medium text-gray-900">
-          <h3>
-            {/*<a href={product.href}> {product.name} </a>*/}
+          <h3 data-testid="product-header">
             {cartItem.product.name}
-            <span className="ml-2 text-sm text-gray-500">
+            <span className="ml-2 text-sm text-gray-500" data-testid="product-size">
               ({cartItem.size})
             </span>
           </h3>

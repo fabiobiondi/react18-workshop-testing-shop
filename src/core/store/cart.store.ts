@@ -28,7 +28,7 @@ export const useCart = create<CartStore>((set, get) => ({
   addToCart: (product: Product, color: string, size: string) => {
     // check if items (id + color + size) has been already added
     const cartItemFound = get().items.find(
-      (item) =>
+      item =>
         item.product.id === product.id &&
         item.color === color &&
         item.size === size
@@ -40,15 +40,15 @@ export const useCart = create<CartStore>((set, get) => ({
       get().incQty(cartItemFound);
     } else {
       // add product to cart with qty = 1
-      set((s) => ({ items: [...s.items, { product, qty: 1, color, size }] }));
+      set(s => ({ items: [...s.items, { product, qty: 1, color, size }] }));
     }
     // open cart summary
     useCartSummary.getState().openCartSummary();
   },
   removeFromCart: (cartItem: CartItem) => {
-    set((s) => ({
+    set(s => ({
       items: s.items.filter(
-        (item) =>
+        item =>
           !(
             item.product.id === cartItem.product.id &&
             item.color === cartItem.color &&
@@ -58,8 +58,8 @@ export const useCart = create<CartStore>((set, get) => ({
     }));
   },
   incQty: (cartItem: CartItem) => {
-    set((s) => ({
-      items: s.items.map((item) => {
+    set(s => ({
+      items: s.items.map(item => {
         const productToIncrement =
           item.product.id === cartItem.product.id &&
           item.color === cartItem.color &&
@@ -71,8 +71,8 @@ export const useCart = create<CartStore>((set, get) => ({
   },
   decQty: (cartItem: CartItem) => {
     if (cartItem.qty > 1) {
-      set((s) => ({
-        items: s.items.map((item) => {
+      set(s => ({
+        items: s.items.map(item => {
           const productToDecrement =
             item.product.id === cartItem.product.id &&
             item.color === cartItem.color &&
