@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import NavBar from "./core/components/NavBar";
 import ShopPage from "./pages/shop/ShopPage";
 import CartSummaryPanel from "./core/components/CartSummaryPanel";

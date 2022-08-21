@@ -1,5 +1,4 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import {useCartSummary} from "../store/cart-summary.store";
@@ -61,12 +60,13 @@ export default function CartSummaryPanel() {
 
                       <div className="mt-8">
                         <div className="flow-root">
-                          <ul role="list" className="-my-6 divide-y divide-gray-200">
+                          <ul className="-my-6 divide-y divide-gray-200">
                             {items.map((item) => (
                               <li key={item.product.id + item.size + item.color} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
                                     src={item.product.images[0]}
+                                    alt={item.product.name}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>

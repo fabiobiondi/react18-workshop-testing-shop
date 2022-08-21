@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import {ArrowCircleRightIcon, PencilAltIcon, TrashIcon} from "@heroicons/react/solid";
+import {PencilAltIcon, TrashIcon} from "@heroicons/react/solid";
 import {useAdmin} from "./hooks/useAdmin";
 import DropDown from "../../shared/components/DropDown";
 import {DialogConfirm} from "../../shared/components/DialogConfirm";

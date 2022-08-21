@@ -35,6 +35,7 @@ export function  useAuth() {
       })
       .finally(() => setPending(false))
   }
+/*
 
   function signInFake( params: Credentials): Promise<Auth> {
 
@@ -47,6 +48,7 @@ export function  useAuth() {
         return res.data
       })
   }
+*/
 
   function signOut() {
     removeItemLocalStorage('token')
