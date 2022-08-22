@@ -47,7 +47,7 @@ export default function DropDown(props: DropDownProps) {
                   <div className="py-1" key={index}>
                     <Menu.Item>
                       {({ active }) => (
-                        <a
+                        <div
                           onClick={item.action}
                           className={clsx("group flex items-center px-4 py-2 text-sm", {
                             "bg-gray-100 text-gray-900": active,
@@ -56,7 +56,7 @@ export default function DropDown(props: DropDownProps) {
                         >
                           <Icon />
                           {item.label}
-                        </a>
+                        </div>
                       )}
                     </Menu.Item>
                   </div>

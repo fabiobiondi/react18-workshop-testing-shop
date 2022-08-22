@@ -36,6 +36,7 @@ export function useAuth() {
       setPending(false);
     }
   }
+/*
 
   function signInFake(params: Credentials): Promise<Auth> {
     return httpClient
@@ -48,6 +49,7 @@ export function useAuth() {
         return res;
       });
   }
+*/
 
   function signOut() {
     removeItemLocalStorage("token");

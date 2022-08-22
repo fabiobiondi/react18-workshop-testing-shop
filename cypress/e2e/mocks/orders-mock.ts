@@ -1,6 +1,6 @@
 import { Order } from "../../../src/model/order";
 
-export const ordersMock: Order[] = [
+export const ordersListMock: Order[] = [
   {
     id: 1,
     client: {

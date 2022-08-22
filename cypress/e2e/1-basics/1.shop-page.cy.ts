@@ -1,6 +1,9 @@
 import { mockProducts } from "../../../mocks";
 import { productsMock } from "../mocks/products-mock";
 
+// import { slowCypressDown } from 'cypress-slow-down';
+// slowCypressDown(1000)
+
 describe("Shop Page", () => {
   let list;
 
@@ -11,6 +14,11 @@ describe("Shop Page", () => {
       { method: "GET" },
       productsMock
     );
+
+    // Mock Images
+    cy.intercept(`/**/*.png`, { fixture: "image1_placeholder.jpg" });
+    cy.intercept(`/**/*.jpg`, { fixture: "image1_placeholder.jpg" });
+
     // Visit shop page
     cy.visit(`${Cypress.env("REACT_APP_URL")}/shop`);
     // get list reference

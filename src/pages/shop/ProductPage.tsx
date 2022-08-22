@@ -33,18 +33,21 @@ function View({ product }: { product: Product }) {
             <img
               src={product.images[0]}
               className="w-full h-full object-center object-cover"
+              alt={product.name}
             />
           </div>
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
               <img
                 src={product.images[1]}
+                alt={product.name}
                 className="w-full h-full object-center object-cover"
               />
             </div>
             <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
               <img
                 src={product.images[2]}
+                alt={product.name}
                 className="w-full h-full object-center object-cover"
               />
             </div>
@@ -240,7 +243,7 @@ function View({ product }: { product: Product }) {
               <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
 
               <div className="mt-4">
-                <ul role="list" className="pl-4 list-disc text-sm space-y-2">
+                <ul className="pl-4 list-disc text-sm space-y-2">
                   {product.highlights.map((highlight) => (
                     <li key={highlight} className="text-gray-400">
                       <span className="text-gray-600">{highlight}</span>

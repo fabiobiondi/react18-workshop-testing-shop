@@ -1,7 +1,7 @@
 // const API = Cypress.env('REACT_APP_BASE_API');
 import "cypress-localstorage-commands";
 
-import { ordersMock } from "../mocks/orders-mock";
+import { ordersListMock } from "../mocks/orders-mock";
 
 describe("Admin: Order Page", () => {
   beforeEach(() => {
@@ -11,7 +11,7 @@ describe("Admin: Order Page", () => {
     cy.intercept(
       `${Cypress.env("REACT_APP_API_URL")}/660/orders`,
       { method: "GET" },
-      ordersMock
+      ordersListMock
     );
 
     cy.intercept(
@@ -21,14 +21,8 @@ describe("Admin: Order Page", () => {
     );
 
     // cy.intercept(`${API}/users`, {method: 'GET'}, mockData)
-    cy.visit(`${Cypress.env("REACT_APP_URL")}/admin`);
-
-    cy.get('input[name="username"]').clear();
-    cy.get('input[name="password"]').clear();
-    cy.get('input[name="username"]').type("mario@rossi.it");
-    cy.get('input[name="password"]').type("123456");
-    cy.get("button").contains("Sign In").click();
-
+    cy.visit(`${Cypress.env("REACT_APP_URL")}/login`);
+    cy.login("Fabio_Biondi", 1234);
     cy.get('[data-testid="order-list"]').as("list");
   });
 
@@ -36,38 +30,39 @@ describe("Admin: Order Page", () => {
     // cy.saveLocalStorage();
   });
 
-  it(`should display ${ordersMock.length} orders in the list`, () => {
-    cy.get("@list").children().should("have.length", ordersMock.length);
+  it(`should display ${ordersListMock.length} orders in the list`, () => {
+    cy.get("@list").children().should("have.length", ordersListMock.length);
   });
 
   // useless because of next text in which we iterate on all list elements
   it(`should properly display data on first element`, () => {
-    cy.get("@list").first().contains(ordersMock[0].client.first_name);
+    cy.get("@list").first().contains(ordersListMock[0].client.first_name);
 
-    cy.get("@list").first().contains(ordersMock[0].totalCost);
+    cy.get("@list").first().contains(ordersListMock[0].totalCost);
 
-    cy.get("@list").first().contains(ordersMock[0].status);
+    cy.get("@list").first().contains(ordersListMock[0].status);
   });
 
   it(`should properly display data on each element`, () => {
     cy.get("@list")
       .children()
       .each(($el, index, $list) => {
-        cy.wrap($el).contains(ordersMock[index].client.first_name);
-        cy.wrap($el).contains(ordersMock[index].totalCost);
-        cy.wrap($el).contains(ordersMock[index].status);
+        cy.wrap($el).contains(ordersListMock[index].client.first_name);
+        cy.wrap($el).contains(ordersListMock[index].totalCost);
+        cy.wrap($el).contains(ordersListMock[index].status);
       });
   });
 
   it(`should toggle status`, () => {
     // Mock Login
     cy.intercept(
-      `${Cypress.env("REACT_APP_API_URL")}/660/orders/${ordersMock[0].id}`,
+      `${Cypress.env("REACT_APP_API_URL")}/660/orders/${ordersListMock[0].id}`,
       { method: "PATCH" },
       {
         body: {
-          ...ordersMock[0],
-          status: ordersMock[0].status === "pending" ? "shipped" : "pending",
+          ...ordersListMock[0],
+          status:
+            ordersListMock[0].status === "pending" ? "shipped" : "pending",
         },
       }
     );

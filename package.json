@@ -38,6 +38,7 @@
     "server": "json-server-auth --watch server/db.json --port 3001",
     "server:noauth": "json-server --watch server/db.json --port 3001",
     "cypress": "cypress open",
+    "cypress:video": "cypress run",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -62,6 +63,7 @@
     "autoprefixer": "^10.4.8",
     "cypress": "^10.4.0",
     "cypress-localstorage-commands": "^2.2.0",
+    "cypress-slow-down": "^1.2.1",
     "json-server": "^0.17.0",
     "json-server-auth": "^2.1.0",
     "msw": "^0.44.2",

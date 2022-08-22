@@ -1,6 +1,9 @@
 import { mockProducts } from "../../../mocks";
 import { productsMock } from "../mocks/products-mock";
 
+/*import { slowCypressDown } from 'cypress-slow-down';
+slowCypressDown(300)*/
+
 describe("Cart Summary", () => {
   beforeEach(() => {
     // Mock Products request and provide mock data
