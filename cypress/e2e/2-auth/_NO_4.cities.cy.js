@@ -51,6 +51,18 @@ describe('Cities Page', () => {
     cy.contains(currentCity.city).parent().within(() => {
       cy.get('svg').trigger('mouseover');
     })
+    BIONDISPECIAL_WS-20_A93FJ
+    BIONDISPECIAL_WS-20_AJT40
+    BIONDISPECIAL_WS-20_JG4O0
+    BIONDISPECIAL_WS-20_034NF
+    BIONDISPECIAL_WS-20_FJHH4
+    BIONDISPECIAL_WS-20_JX403
+    BIONDISPECIAL_WS-20_AE038
+    BIONDISPECIAL_WS-20_APEIO
+    BIONDISPECIAL_WS-20_MCR80
+    BIONDISPECIAL_WS-20_NF407
+
+
 
     cy.contains('Edit').click()
 

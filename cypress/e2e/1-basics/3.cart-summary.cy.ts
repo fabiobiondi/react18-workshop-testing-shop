@@ -2,6 +2,9 @@ import {BASE_API} from "../../../src/core/config";
 import {productsMock} from "../mocks/products-mock";
 import {mockProducts} from "../../../src/data/mock";
 
+/*import { slowCypressDown } from 'cypress-slow-down';
+slowCypressDown(300)*/
+
 describe('Cart Summary', () => {
     beforeEach(() => {
         // Mock Products request and provide mock data
