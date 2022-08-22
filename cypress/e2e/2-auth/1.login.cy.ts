@@ -4,7 +4,7 @@
 // TODO
 
 import {BASE_API} from "../../../src/core/config";
-import { ordersListMock, ordersMock } from '../mocks/orders-mock';
+import { ordersListMock } from '../mocks/orders-mock';
 
 describe('Login', () => {
   beforeEach(() => {
@@ -98,9 +98,7 @@ describe('Login', () => {
 
   })
 
-
-  //
-  it('should redirect to "admin" if I visit the admin page after user is already logged', () => {
+  it.only('should redirect to "admin" if I visit the admin page after user is already logged', () => {
     cy.intercept(`${BASE_API}/login`,
       { method: 'POST' },
       { accessToken: 123, user: { email: 'xyz@abc.com', id: 1} }
@@ -125,6 +123,9 @@ describe('Login', () => {
     // in fact, we try to login
     cy.login('mario', '12345')
 
+    // Since next command redirect to home, and this load some images, we need to mock them to avoid network requests
+    cy.intercept("https://images.unsplash.com/**/*.*", { fixture: "image2_placeholder.png" })
+    cy.intercept(`/**/*.gif`, { fixture: "image2_placeholder.png" })
     // go to another page (whatever)
     cy.visit('http://localhost:3000/home');
 

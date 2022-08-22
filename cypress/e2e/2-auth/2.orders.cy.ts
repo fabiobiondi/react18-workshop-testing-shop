@@ -9,6 +9,7 @@ describe('Admin: Order Page', () => {
   beforeEach(() => {
    // cy.restoreLocalStorage();
 
+
     // Mock Login
     cy.intercept(
       `${BASE_API}/660/orders`,
@@ -23,7 +24,7 @@ describe('Admin: Order Page', () => {
 
     // cy.intercept(`${API}/users`, {method: 'GET'}, mockData)
     cy.visit('http://localhost:3000/admin');
-    cy.login('Fabio_Biondi', 'ABCDEF')
+    cy.login('Fabio_Biondi', 123)
     cy.get('[data-testid="order-list"]').as('list')
   })
 

@@ -2,12 +2,20 @@ import {BASE_API} from "../../../src/core/config";
 import {productsMock} from "../mocks/products-mock";
 import {mockProducts} from "../../../src/data/mock";
 
+// import { slowCypressDown } from 'cypress-slow-down';
+// slowCypressDown(1000)
+
 describe('Shop Page', () => {
     let list;
 
     beforeEach(() => {
         // Mock Products request and provide mock data
         cy.intercept(`${BASE_API}/products`, {method: 'GET'}, productsMock)
+
+        // Mock Images
+        cy.intercept(`/**/*.png`, { fixture: "image1_placeholder.jpg" })
+        cy.intercept(`/**/*.jpg`, { fixture: "image1_placeholder.jpg" })
+
         // Visit shop page
         cy.visit('http://localhost:3000/shop');
         // get list reference

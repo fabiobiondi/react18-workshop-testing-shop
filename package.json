@@ -31,7 +31,8 @@
     "eject": "react-scripts eject",
     "server": "json-server-auth --watch server/db.json --port 3001",
     "server:noauth": "json-server --watch server/db.json --port 3001",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "cypress:video": "cypress run"
   },
   "eslintConfig": {
     "extends": [
