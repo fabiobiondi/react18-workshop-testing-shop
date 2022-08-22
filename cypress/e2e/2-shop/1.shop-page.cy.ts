@@ -13,8 +13,8 @@ describe('Shop Page', () => {
         cy.intercept(`${BASE_API}/products`, {method: 'GET'}, productsMock)
 
         // Mock Images
-        cy.intercept(`/**/*.png`, { fixture: "image1_placeholder.jpg" })
-        cy.intercept(`/**/*.jpg`, { fixture: "image1_placeholder.jpg" })
+        cy.intercept(`/**/*.png`, { fixture: "image2_placeholder.png" })
+        cy.intercept(`/**/*.jpg`, { fixture: "image2_placeholder.png" })
 
         // Visit shop page
         cy.visit('http://localhost:3000/shop');
