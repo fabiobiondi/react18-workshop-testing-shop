@@ -1,6 +1,5 @@
 import {BASE_API} from "../../../src/core/config";
 import {productsMock} from "../mocks/products-mock";
-import {mockProducts} from "../../../src/data/mock";
 
 describe('Shop Page: default behaviors', () => {
     beforeEach(() => {
@@ -9,7 +8,6 @@ describe('Shop Page: default behaviors', () => {
         // Visit shop page
         cy.visit('http://localhost:3000/shop/1');
     })
-
 
     it(`should disabled "add to bag" button before the selection of size and color`, () => {
         cy.get('button')
@@ -28,14 +26,13 @@ describe('Shop Page: default behaviors', () => {
           .contains('Add to bag')
           .should('be.disabled')
     })
-
-
 })
 
 describe('Shop Page: Add to Cart', () => {
     beforeEach(() => {
         // Mock Products request and provide mock data
         cy.intercept(`${BASE_API}/products/1`, {method: 'GET'}, productsMock[0])
+
         // Visit shop page
         cy.visit('http://localhost:3000/shop/1');
 
@@ -57,21 +54,17 @@ describe('Shop Page: Add to Cart', () => {
         cy.get('button')
           .contains('Add to bag')
           .click()
-
     })
 
-
-    it(`should display the total of items added to cart in navbar`, () => {
-        // check if the cart button display 1 product
-        cy.get('div').contains('Cart (1)')
-
-    })
-
-    it(`should display the cart summary when an item is added to cart`, () => {
+    it(`should display the cart summary panel when an item is added to cart`, () => {
         // check if the cart button display 1 product
         cy.get('[data-testid="cart-summary"]')
           .should('be.visible')
     })
 
+    it(`should display the total of items added to cart in navbar`, () => {
+        // check if the cart button display the number 1
+        cy.get('div').contains('Cart (1)')
+    })
 
 })
