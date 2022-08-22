@@ -2,7 +2,7 @@
 import "cypress-localstorage-commands";
 
 import { BASE_API } from "../../../src/core/config";
-import { ordersMock } from "../mocks/orders-mock";
+import { ordersListMock } from "../mocks/orders-mock";
 
 describe('Admin: Order Page', () => {
 
@@ -13,7 +13,7 @@ describe('Admin: Order Page', () => {
     cy.intercept(
       `${BASE_API}/660/orders`,
       {method: 'GET'},
-      ordersMock
+      ordersListMock
     );
 
     cy.intercept(`${BASE_API}/login`,
@@ -23,14 +23,7 @@ describe('Admin: Order Page', () => {
 
     // cy.intercept(`${API}/users`, {method: 'GET'}, mockData)
     cy.visit('http://localhost:3000/admin');
-
-    cy.get('input[name="username"]').clear()
-    cy.get('input[name="password"]').clear()
-    cy.get('input[name="username"]').type('mario@rossi.it')
-    cy.get('input[name="password"]').type('123456')
-    cy.get('button').contains('Sign In').click()
-
-
+    cy.login('Fabio_Biondi', 'ABCDEF')
     cy.get('[data-testid="order-list"]').as('list')
   })
 
@@ -38,31 +31,31 @@ describe('Admin: Order Page', () => {
     // cy.saveLocalStorage();
   });
 
-  it(`should display ${ordersMock.length} orders in the list`, () => {
+  it(`should display ${ordersListMock.length} orders in the list`, () => {
     cy.get('@list')
       .children()
-      .should('have.length', ordersMock.length)
+      .should('have.length', ordersListMock.length)
   })
 
   // useless because of next text in which we iterate on all list elements
   it(`should properly display data on first element`, () => {
     cy.get('@list')
-      .first().contains(ordersMock[0].client.first_name)
+      .first().contains(ordersListMock[0].client.first_name)
 
     cy.get('@list')
-      .first().contains(ordersMock[0].totalCost)
+      .first().contains(ordersListMock[0].totalCost)
 
     cy.get('@list')
-      .first().contains(ordersMock[0].status)
+      .first().contains(ordersListMock[0].status)
   })
 
   it(`should properly display data on each element`, () => {
     cy.get('@list')
       .children()
       .each(($el, index, $list) => {
-        cy.wrap($el).contains(ordersMock[index].client.first_name)
-        cy.wrap($el).contains(ordersMock[index].totalCost)
-        cy.wrap($el).contains(ordersMock[index].status)
+        cy.wrap($el).contains(ordersListMock[index].client.first_name)
+        cy.wrap($el).contains(ordersListMock[index].totalCost)
+        cy.wrap($el).contains(ordersListMock[index].status)
       })
   })
 
@@ -70,12 +63,12 @@ describe('Admin: Order Page', () => {
   it(`should toggle status`, () => {
     // Mock Login
     cy.intercept(
-      `${BASE_API}/660/orders/${ordersMock[0].id}`,
+      `${BASE_API}/660/orders/${ordersListMock[0].id}`,
       {method: 'PATCH'},
       {
         body: {
-          ...ordersMock[0],
-          status: ordersMock[0].status === 'pending' ? 'shipped' : 'pending'
+          ...ordersListMock[0],
+          status: ordersListMock[0].status === 'pending' ? 'shipped' : 'pending'
         }
       }
     );
