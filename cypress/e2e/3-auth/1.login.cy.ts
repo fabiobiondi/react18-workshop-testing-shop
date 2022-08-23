@@ -1,6 +1,4 @@
 /// <reference types="cypress" />
-
-// TODO
 import { ordersListMock } from "../mocks/orders-mock";
 
 describe("Login", () => {
@@ -63,7 +61,7 @@ describe("Login", () => {
 
     cy.login("mario", "12345");
 
-    cy.location().should(loc => {
+    cy.location().should((loc) => {
       expect(loc.pathname).to.eq("/admin");
     });
   });
@@ -71,7 +69,7 @@ describe("Login", () => {
   it('should redirect to "login" if I visit the admin page first time', () => {
     cy.visit(`${Cypress.env("REACT_APP_URL")}/admin`);
 
-    cy.location().should(loc => {
+    cy.location().should((loc) => {
       expect(loc.pathname).to.eq("/login");
     });
   });
@@ -86,7 +84,7 @@ describe("Login", () => {
       cy.contains("Admin").click({ force: true });
     });
 
-    cy.location().should(loc => {
+    cy.location().should((loc) => {
       expect(loc.pathname).to.eq("/login");
     });
   });
@@ -112,7 +110,7 @@ describe("Login", () => {
     // we can check if we'are in the login page
     // Anyway, this check is not really necessary since the next step if the Login Command
     // and it would fails if I'm not in the login page
-    cy.location().should(loc => {
+    cy.location().should((loc) => {
       expect(loc.pathname).to.eq("/login");
     });
     // in fact, we try to login
@@ -132,7 +130,7 @@ describe("Login", () => {
      * WHY? a route guard check if user is already logged (in localstorage)
      */
     cy.visit(`${Cypress.env("REACT_APP_URL")}/admin`);
-    cy.location().should(loc => {
+    cy.location().should((loc) => {
       expect(loc.pathname).to.eq("/admin");
     });
   });
