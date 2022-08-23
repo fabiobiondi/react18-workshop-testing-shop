@@ -24,6 +24,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/fabiobiondi/Documents/training/corsi-react/react18-workshop-testing-shop/node_modules/prettier",
     "ts.external.directory.path": "/Users/fabiobiondi/Documents/training/corsi-react/react18-workshop-testing-shop/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }

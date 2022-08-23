@@ -1,5 +1,3 @@
-import { BASE_API } from '../../../src/core/config';
-
 describe('Google Search', () => {
   beforeEach(() => {
     cy.intercept(
@@ -57,14 +55,11 @@ describe('Google Search', () => {
       .click()
 
     // Intercept AutoComplete
-
     cy.intercept('GET', '/complete/*', {
       body: "some values"
     })
 
-
     cy.get('input[title="Cerca"]').type('Fabio Biondi Developer{enter}').as('inputSearch')
-
 
     cy.location().should((loc) => {
       expect(loc.pathname).to.contains('/search')
