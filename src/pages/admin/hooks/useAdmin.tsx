@@ -1,7 +1,6 @@
-import {useEffect, useState} from "react";
-import {Order} from "../../../model/order";
-import axios from "axios";
-import {BASE_API} from "../../../core/config";
+import { useEffect, useState } from "react";
+import { Order } from "../../../model/order";
+import { httpClient } from "../../../shared/utils/http.utils";
 
 export function useAdmin() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -11,40 +10,36 @@ export function useAdmin() {
   }, []);
 
   function getOrders() {
-    axios.get<Order[]>(`${BASE_API}/660/orders`)
-      .then(res => {
-        setOrders(res.data)
-      })
+    httpClient.get<Order[]>(`/660/orders`).then((res) => {
+      setOrders(res);
+    });
   }
 
   function toggleStatus(order: Order) {
-    axios.patch<Order>(
-      `${BASE_API}/660/orders/${order.id}`,
-      { status: order.status === 'pending' ? 'shipped' : 'pending' },
-      {
-        /*headers: {
-          Authorization: 'Bearer ' + getItemFromLocalStorage('token')
-        }*/
-      }
-    )
-      .then(res => {
-        setOrders(orders.map(o => {
-          return o.id === order.id ? res.data : o
-        }))
-      })
+    httpClient
+      .patch<Order>(
+        `/660/orders/${order.id}`,
+        { status: order.status === "pending" ? "shipped" : "pending" },
+      )
+      .then((res) => {
+        setOrders(
+          orders.map((o) => {
+            return o.id === order.id ? res : o;
+          })
+        );
+      });
   }
 
   function deleteOrder(id: number) {
-    axios.delete(`${BASE_API}/660/orders/${id}`, {
-      /*headers: {
-        Authorization: 'Bearer ' + getItemFromLocalStorage('token')
-      }*/
-    })
+    httpClient
+      .delete(`/660/orders/${id}`)
       .then(() => {
-        setOrders(orders.filter(o => {
-          return o.id !== id
-        }))
-      })
+        setOrders(
+          orders.filter((o) => {
+            return o.id !== id;
+          })
+        );
+      });
   }
 
   return {
@@ -52,7 +47,7 @@ export function useAdmin() {
     actions: {
       getOrders,
       toggleStatus,
-      deleteOrder
-    }
-  }
+      deleteOrder,
+    },
+  };
 }

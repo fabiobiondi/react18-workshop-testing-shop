@@ -1,5 +1,5 @@
-import {useInterceptor} from "../hooks/useInterceptor";
-import {ExclamationCircleIcon} from "@heroicons/react/solid";
+import { ExclamationCircleIcon } from "@heroicons/react/solid";
+import { useInterceptor } from "../hooks/useInterceptor";
 
 export function Interceptor() {
   const { error } = useInterceptor()

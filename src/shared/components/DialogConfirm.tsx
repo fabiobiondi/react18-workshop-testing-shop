@@ -1,8 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
-import {Fragment, useRef } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/outline'
-
+import { Dialog, Transition } from "@headlessui/react";
+import { CheckIcon } from "@heroicons/react/outline";
+import { Fragment, useRef } from "react";
 
 export interface DialogConfirmProps {
   show: boolean;
@@ -12,11 +11,11 @@ export interface DialogConfirmProps {
   confirmLabel: string;
   onCancel: () => void;
   onConfirm: () => void;
-  icon?: React.ReactNode,
+  icon?: React.ReactNode;
 }
 
 export function DialogConfirm(props: DialogConfirmProps) {
-  const cancelButtonRef = useRef(null)
+  const cancelButtonRef = useRef(null);
 
   return (
     <Transition.Root show={props.show} as={Fragment}>
@@ -42,7 +41,10 @@ export function DialogConfirm(props: DialogConfirmProps) {
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
-          <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
+          <span
+            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+          >
             &#8203;
           </span>
           <Transition.Child
@@ -57,16 +59,20 @@ export function DialogConfirm(props: DialogConfirmProps) {
             <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div>
                 <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-                  <CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
+                  <CheckIcon
+                    className="h-6 w-6 text-green-600"
+                    aria-hidden="true"
+                  />
                 </div>
                 <div className="mt-3 text-center sm:mt-5">
-                  <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg leading-6 font-medium text-gray-900"
+                  >
                     {props.title}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      {props.description}
-                    </p>
+                    <p className="text-sm text-gray-500">{props.description}</p>
                   </div>
                 </div>
               </div>
@@ -92,5 +98,5 @@ export function DialogConfirm(props: DialogConfirmProps) {
         </div>
       </Dialog>
     </Transition.Root>
-  )
+  );
 }

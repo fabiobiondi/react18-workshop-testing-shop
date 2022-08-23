@@ -31,7 +31,7 @@ import {
   LockClosedIcon,
   RefreshIcon,
   ServerIcon,
-  ShieldCheckIcon,
+  ShieldCheckIcon
 } from '@heroicons/react/outline'
 import { ChevronRightIcon, ExternalLinkIcon } from '@heroicons/react/solid'
 

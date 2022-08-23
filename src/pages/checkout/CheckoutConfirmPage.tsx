@@ -1,6 +1,6 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function CheckoutConfirmPage () {
+export default function CheckoutConfirmPage() {
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
@@ -28,5 +28,5 @@ export default function CheckoutConfirmPage () {
         </div>
       </div>
     </div>
-  )
+  );
 }

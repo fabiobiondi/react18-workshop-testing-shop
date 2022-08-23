@@ -1,75 +1,59 @@
-import {FormEvent, useState} from "react";
 import clsx from "clsx";
-import {useNavigate} from "react-router-dom";
-import {Client} from "../../model/order";
-import {useCheckout} from "./hooks/useCheckout";
-
-const initialState: Omit<Client, 'id'> = {
-  first_name: '',
-  last_name: '',
-  email: '',
-  country: '',
-  street: '',
-  city: '',
-  state_prov: '',
-  zip: '',
-  notification_email: true,
-  notification_sms: false,
-}
+import { FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCheckoutForm } from "./hooks/useCheckoutForm";
 
 export default function CheckoutPage() {
-  const [formData, setFormData] = useState(initialState);
-  const [dirty, setDirty] = useState(false);
-  const { sendOrder } = useCheckout();
+  const { formData, dirty, formValidation, isFormValid, validateName, updateField, reset, submit } = useCheckoutForm();
   const navigate = useNavigate();
 
-  function onChangeHandler(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+  function onChangeHandler(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
     const name = e.currentTarget.name;
-    const value = e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value
-    setFormData(s => ({ ...s, [name]: value}))
-    setDirty(true);
+    if (!validateName(name)) {
+      throw new Error(`Invalid name: ${name}`);
+    }
+    const value =
+      e.target.type === "checkbox"
+        ? (e.target as HTMLInputElement).checked
+        : e.target.value;
+
+    updateField(name, value);
   }
 
-  function doResetForm() {
-    setFormData({...initialState});
-  }
-
-  function onConfirmFormHandler(e: FormEvent<HTMLFormElement>) {
+  async function onConfirmFormHandler(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    sendOrder(formData)
-      .then(() => {
-        navigate('/checkout-confirm');
-        doResetForm();
-      })
+    try {
+      await submit()
+      navigate("/checkout-confirm");
+    } catch (error) {
+      console.log(error);
+    }
   }
-
-  // ENHANCE: we could create a validation object and / or move it to a separated module
-  const isFirstNameValid = !!formData.first_name.length;
-  const isLastNameValid = !!formData.last_name.length;
-  const isEmailValid = !!formData.email.length;
-  const isCityValid = !!formData.city.length;
-  const isStreetValid = !!formData.street.length;
-  const isCountryValid = !!formData.country.length;
-  const isStateProvValid = !!formData.state_prov.length;
-  const isZipValid = !!formData.zip.length;
-  const isFormValid = isFirstNameValid && isLastNameValid && isEmailValid && isCityValid && isStateProvValid && isZipValid && isCountryValid && isStreetValid;
 
   return (
     <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <form onSubmit={onConfirmFormHandler} className="space-y-6">
-
         <div className="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Shipping Info</h3>
-              <p className="mt-1 text-sm text-gray-500">Add the address where you want to receive products  </p>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Shipping Info
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                Add the address where you want to receive products{" "}
+              </p>
             </div>
             <div className="mt-5 md:mt-0 md:col-span-2">
               <div>
                 <div className="grid grid-cols-6 gap-6">
                   <div className="col-span-6 sm:col-span-3">
-                    <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="first_name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       First name
                     </label>
                     <input
@@ -78,15 +62,17 @@ export default function CheckoutPage() {
                       id="first_name"
                       value={formData.first_name}
                       onChange={onChangeHandler}
-                      className={clsx(
-                        'form-input',
-                        {'error': !isFirstNameValid && dirty}
-                      )}
+                      className={clsx("form-input", {
+                        error: !!formValidation.first_name && dirty,
+                      })}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-3">
-                    <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="last_name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Last name
                     </label>
                     <input
@@ -95,15 +81,17 @@ export default function CheckoutPage() {
                       id="last_name"
                       value={formData.last_name}
                       onChange={onChangeHandler}
-                      className={clsx(
-                        'form-input',
-                        {'error': !isLastNameValid && dirty}
-                      )}
+                      className={clsx("form-input", {
+                        error: !!formValidation.last_name && dirty,
+                      })}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-4">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Email address
                     </label>
                     <input
@@ -112,15 +100,17 @@ export default function CheckoutPage() {
                       id="email"
                       value={formData.email}
                       onChange={onChangeHandler}
-                      className={clsx(
-                        'form-input',
-                        {'error': !isEmailValid && dirty}
-                      )}
+                      className={clsx("form-input", {
+                        error: !!formValidation.email && dirty,
+                      })}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-3">
-                    <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="country"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Country / Region
                     </label>
                     <select
@@ -128,10 +118,9 @@ export default function CheckoutPage() {
                       name="country"
                       value={formData.country}
                       onChange={onChangeHandler}
-                      className={clsx(
-                        'form-input',
-                        {'error': !isCountryValid && dirty}
-                      )}
+                      className={clsx("form-input", {
+                        error: !!formValidation.country && dirty,
+                      })}
                     >
                       <option value="">Select Country</option>
                       <option>Italy</option>
@@ -142,7 +131,10 @@ export default function CheckoutPage() {
                   </div>
 
                   <div className="col-span-6">
-                    <label htmlFor="street" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="street"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Street address
                     </label>
                     <input
@@ -151,15 +143,17 @@ export default function CheckoutPage() {
                       id="street"
                       value={formData.street}
                       onChange={onChangeHandler}
-                      className={clsx(
-                        'form-input',
-                        {'error': !isStreetValid && dirty}
-                      )}
+                      className={clsx("form-input", {
+                        error: !!formValidation.street && dirty,
+                      })}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="city"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       City
                     </label>
                     <input
@@ -168,15 +162,17 @@ export default function CheckoutPage() {
                       id="city"
                       value={formData.city}
                       onChange={onChangeHandler}
-                      className={clsx(
-                        'form-input',
-                        {'error': !isCityValid && dirty}
-                      )}
+                      className={clsx("form-input", {
+                        error: !!formValidation.city && dirty,
+                      })}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                    <label htmlFor="state_prov" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="state_prov"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       State / Province
                     </label>
                     <input
@@ -185,15 +181,17 @@ export default function CheckoutPage() {
                       id="state_prov"
                       value={formData.state_prov}
                       onChange={onChangeHandler}
-                      className={clsx(
-                        'form-input',
-                        {'error': !isStateProvValid && dirty}
-                      )}
+                      className={clsx("form-input", {
+                        error: !!formValidation.state_prov && dirty,
+                      })}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                    <label htmlFor="zip" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="zip"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       ZIP / Postal
                     </label>
                     <input
@@ -202,10 +200,9 @@ export default function CheckoutPage() {
                       id="zip"
                       value={formData.zip}
                       onChange={onChangeHandler}
-                      className={clsx(
-                        'form-input',
-                        {'error': !isZipValid && dirty}
-                      )}
+                      className={clsx("form-input", {
+                        error: !!formValidation.zip && dirty,
+                      })}
                     />
                   </div>
                 </div>
@@ -217,8 +214,12 @@ export default function CheckoutPage() {
         <div className="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Notifications</h3>
-              <p className="mt-1 text-sm text-gray-500">Decide which communications you'd like to receive and how.</p>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Notifications
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                Decide which communications you'd like to receive and how.
+              </p>
             </div>
             <div className="mt-5 md:mt-0 md:col-span-2">
               <div className="space-y-6">
@@ -236,10 +237,16 @@ export default function CheckoutPage() {
                         />
                       </div>
                       <div className="ml-3 text-sm">
-                        <label htmlFor="notification_email" className="font-medium text-gray-700">
+                        <label
+                          htmlFor="notification_email"
+                          className="font-medium text-gray-700"
+                        >
                           Email
                         </label>
-                        <p className="text-gray-500">Get notified when someones posts a comment on a posting.</p>
+                        <p className="text-gray-500">
+                          Get notified when someones posts a comment on a
+                          posting.
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start">
@@ -254,10 +261,15 @@ export default function CheckoutPage() {
                         />
                       </div>
                       <div className="ml-3 text-sm">
-                        <label htmlFor="notification_sms" className="font-medium text-gray-700">
+                        <label
+                          htmlFor="notification_sms"
+                          className="font-medium text-gray-700"
+                        >
                           SMS
                         </label>
-                        <p className="text-gray-500">Get notified when a candidate applies for a job.</p>
+                        <p className="text-gray-500">
+                          Get notified when a candidate applies for a job.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -270,7 +282,7 @@ export default function CheckoutPage() {
         <div className="flex justify-end">
           <button
             type="button"
-            onClick={doResetForm}
+            onClick={reset}
             className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Clean
@@ -284,10 +296,6 @@ export default function CheckoutPage() {
           </button>
         </div>
       </form>
-
-{/*
-      <pre>{JSON.stringify(formData, null, 2)}</pre>
-*/}
     </div>
-  )
+  );
 }

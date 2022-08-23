@@ -1,0 +1,13 @@
+{
+  "name": "react-shop-testing",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "json-server": "^0.17.0",
+    "json-server-auth": "^2.1.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
