@@ -10,6 +10,7 @@ const navigation = [
 
 export default function NavBar() {
   const openCartSummary = useCartSummary((state) => state.openCartSummary);
+
   const { totalItems } = useCart();
 
   return (
