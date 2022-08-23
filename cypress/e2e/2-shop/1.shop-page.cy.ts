@@ -5,8 +5,6 @@ import { productsMock } from "../mocks/products-mock";
 // slowCypressDown(1000)
 
 describe("Shop Page", () => {
-  let list;
-
   beforeEach(() => {
     // Mock Products request and provide mock data
     cy.intercept(
@@ -16,46 +14,44 @@ describe("Shop Page", () => {
     );
 
     // Mock Images
-    cy.intercept(`/**/*.png`, { fixture: "image1_placeholder.jpg" });
-    cy.intercept(`/**/*.jpg`, { fixture: "image1_placeholder.jpg" });
+    cy.intercept(`/**/*.png`, { fixture: "image2_placeholder.png" });
+    cy.intercept(`/**/*.jpg`, { fixture: "image2_placeholder.png" });
 
     // Visit shop page
     cy.visit(`${Cypress.env("REACT_APP_URL")}/shop`);
-    // get list reference
-    list = cy.get('[data-testid="products-list"]');
+
+    // set product list alias
+    cy.get('[data-testid="products-list"]').as("productList");
   });
 
   it(`should display exactly ${productsMock.length} elements in the page`, () => {
-    list.children().should("have.length", productsMock.length);
+    cy.get("@productList")
+      .children()
+      .should("have.length", productsMock.length);
   });
 
   it(`should the first item display its own name and price`, () => {
-    list.children().first().contains(productsMock[0].name);
+    cy.get("@productList").children().first().contains(productsMock[0].name);
 
-    list.children().first().contains(productsMock[0].price);
+    cy.get("@productList").children().first().contains(productsMock[0].price);
   });
 
   it(`should the last item display its own name and price`, () => {
-    list
-      .children()
-      .last()
-      .contains(productsMock[productsMock.length - 1].name);
+    const lastProduct = productsMock[productsMock.length - 1];
+    cy.get("@productList").children().last().contains(lastProduct.name);
 
-    list
-      .children()
-      .last()
-      .contains(productsMock[productsMock.length - 1].price);
+    cy.get("@productList").children().last().contains(lastProduct.price);
   });
 
-  it(`should items contains the first image product`, () => {
-    list
+  it(`should items contains the first product image`, () => {
+    cy.get("@productList")
       .children()
       .first()
       .find("img")
       .should("have.attr", "src")
       .should("include", productsMock[0].images[0]);
 
-    list
+    cy.get("@productList")
       .children()
       .last()
       .find("img")
@@ -64,12 +60,12 @@ describe("Shop Page", () => {
   });
 
   it(`should items display colors`, () => {
-    list
+    cy.get("@productList")
       .children()
       .first()
       .find(`[style="background-color: ${productsMock[0].colors[0]};"]`);
 
-    list
+    cy.get("@productList")
       .children()
       .last()
       .find(
@@ -82,7 +78,7 @@ describe("Shop Page", () => {
   });
 
   it(`should redirect to product page when an item is clicked`, () => {
-    list.children().first().click();
+    cy.get("@productList").children().first().click();
 
     cy.location().should(location => {
       expect(location.pathname).to.eq(`/shop/${mockProducts[0].id}`);

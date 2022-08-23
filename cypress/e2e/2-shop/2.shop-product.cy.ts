@@ -35,6 +35,7 @@ describe("Shop Page: Add to Cart", () => {
       { method: "GET" },
       productsMock[0]
     );
+
     // Visit shop page
     cy.visit(`${Cypress.env("REACT_APP_URL")}/shop/1`);
 
@@ -56,13 +57,13 @@ describe("Shop Page: Add to Cart", () => {
     cy.get("button").contains("Add to bag").click();
   });
 
-  it(`should display the total of items added to cart in navbar`, () => {
-    // check if the cart button display 1 product
-    cy.get("div").contains("Cart (1)");
-  });
-
-  it(`should display the cart summary when an item is added to cart`, () => {
+  it(`should display the cart summary panel when an item is added to cart`, () => {
     // check if the cart button display 1 product
     cy.get('[data-testid="cart-summary"]').should("be.visible");
+  });
+
+  it(`should display the total of items added to cart in navbar`, () => {
+    // check if the cart button display the number 1
+    cy.get("div").contains("Cart (1)");
   });
 });
