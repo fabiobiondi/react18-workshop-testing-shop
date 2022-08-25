@@ -1,11 +1,47 @@
-import clsx from "clsx";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Input, Label, Select } from "../../ui";
 import { useCheckoutForm } from "./hooks/useCheckoutForm";
 
 export default function CheckoutPage() {
-  const { formData, dirty, formValidation, isFormValid, validateName, updateField, reset, submit } = useCheckoutForm();
+  const {
+    formData,
+    dirty,
+    formValidation,
+    isFormValid,
+    validateName,
+    updateField,
+    reset,
+    submit,
+  } = useCheckoutForm();
   const navigate = useNavigate();
+  const [countries] = useState<
+    {
+      value: string;
+      label: string;
+    }[]
+  >([
+    {
+      value: "",
+      label: "",
+    },
+    {
+      value: "Italy",
+      label: "Italy",
+    },
+    {
+      value: "United States",
+      label: "United States",
+    },
+    {
+      value: "Canada",
+      label: "Canada",
+    },
+    {
+      value: "Mexico",
+      label: "Mexico",
+    },
+  ]);
 
   function onChangeHandler(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -26,7 +62,7 @@ export default function CheckoutPage() {
     e.preventDefault();
 
     try {
-      await submit()
+      await submit();
       navigate("/checkout-confirm");
     } catch (error) {
       console.log(error);
@@ -50,159 +86,94 @@ export default function CheckoutPage() {
               <div>
                 <div className="grid grid-cols-6 gap-6">
                   <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="first_name"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      First name
-                    </label>
-                    <input
+                    <Label htmlFor="first_name">First Name</Label>
+                    <Input
                       type="text"
                       name="first_name"
                       id="first_name"
                       value={formData.first_name}
-                      onChange={onChangeHandler}
-                      className={clsx("form-input", {
-                        error: !!formValidation.first_name && dirty,
-                      })}
+                      onChange={(value) => updateField("first_name", value)}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="last_name"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Last name
-                    </label>
-                    <input
+                    <Label htmlFor="lastName">Last Name</Label>
+                    <Input
                       type="text"
                       name="last_name"
                       id="last_name"
                       value={formData.last_name}
-                      onChange={onChangeHandler}
-                      className={clsx("form-input", {
-                        error: !!formValidation.last_name && dirty,
-                      })}
+                      onChange={(value) => updateField("last_name", value)}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-4">
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Email address
-                    </label>
-                    <input
-                      type="text"
+                    <Label htmlFor="email">Email address</Label>
+                    <Input
+                      type="email"
                       name="email"
                       id="email"
                       value={formData.email}
-                      onChange={onChangeHandler}
-                      className={clsx("form-input", {
-                        error: !!formValidation.email && dirty,
-                      })}
+                      onChange={(value) => updateField("email", value)}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="country"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Country / Region
-                    </label>
-                    <select
-                      id="country"
+                    <Label htmlFor="country">Country / Region</Label>
+                    <Select
                       name="country"
+                      options={countries}
                       value={formData.country}
-                      onChange={onChangeHandler}
-                      className={clsx("form-input", {
-                        error: !!formValidation.country && dirty,
-                      })}
-                    >
-                      <option value="">Select Country</option>
-                      <option>Italy</option>
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
-                    </select>
+                      propValue="value"
+                      propText="label"
+                      propKey="value"
+                      onChange={(value) => updateField("country", value)}
+                      isError={!!formValidation.country}
+                      isDirty={dirty}
+                    />
                   </div>
 
                   <div className="col-span-6">
-                    <label
-                      htmlFor="street"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Street address
-                    </label>
-                    <input
+                    <Label htmlFor="street">Street address</Label>
+                    <Input
                       type="text"
                       name="street"
                       id="street"
                       value={formData.street}
-                      onChange={onChangeHandler}
-                      className={clsx("form-input", {
-                        error: !!formValidation.street && dirty,
-                      })}
+                      onChange={(value) => updateField("street", value)}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                    <label
-                      htmlFor="city"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      City
-                    </label>
-                    <input
+                    <Label htmlFor="city">City</Label>
+                    <Input
                       type="text"
                       name="city"
                       id="city"
                       value={formData.city}
-                      onChange={onChangeHandler}
-                      className={clsx("form-input", {
-                        error: !!formValidation.city && dirty,
-                      })}
+                      onChange={(value) => updateField("city", value)}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                    <label
-                      htmlFor="state_prov"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      State / Province
-                    </label>
-                    <input
+                    <Label htmlFor="state_prov">State / Province</Label>
+                    <Input
                       type="text"
                       name="state_prov"
                       id="state_prov"
                       value={formData.state_prov}
-                      onChange={onChangeHandler}
-                      className={clsx("form-input", {
-                        error: !!formValidation.state_prov && dirty,
-                      })}
+                      onChange={(value) => updateField("state_prov", value)}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                    <label
-                      htmlFor="zip"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      ZIP / Postal
-                    </label>
-                    <input
+                    <Label htmlFor="zip">Zip / Postal</Label>
+                    <Input
                       type="text"
                       name="zip"
                       id="zip"
                       value={formData.zip}
-                      onChange={onChangeHandler}
-                      className={clsx("form-input", {
-                        error: !!formValidation.zip && dirty,
-                      })}
+                      onChange={(value) => updateField("zip", value)}
                     />
                   </div>
                 </div>
