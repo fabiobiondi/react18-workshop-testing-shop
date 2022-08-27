@@ -15,20 +15,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/fabiobiondi/Documents/training/corsi-react/react18-workshop-testing-shop/cypress/e2e/1-hello-cypress",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/fabiobiondi/Documents/training/corsi-react/react18-workshop-testing-shop/node_modules/prettier",
-    "ts.external.directory.path": "/Users/fabiobiondi/Documents/training/corsi-react/react18-workshop-testing-shop/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/fabiobiondi/Documents/training/corsi-react/react18-workshop-testing-shop/cypress/e2e/1-hello-cypress&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/fabiobiondi/Documents/training/corsi-react/react18-workshop-testing-shop/node_modules/prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/fabiobiondi/Documents/training/corsi-react/react18-workshop-testing-shop/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/cypress/e2e/1-hello-cypress" />
@@ -79,6 +79,8 @@
       <workItem from="1659345293359" duration="50089000" />
       <workItem from="1660513414284" duration="3995000" />
       <workItem from="1661123142112" duration="30277000" />
+      <workItem from="1661593624214" duration="365000" />
+      <workItem from="1661598959571" duration="330000" />
     </task>
     <servers />
   </component>
