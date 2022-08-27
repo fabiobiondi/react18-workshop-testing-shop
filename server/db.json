@@ -242,6 +242,11 @@
   ],
   "fakeList": [
     {
+      "id": 1,
+      "name": "Nutella",
+      "cost": 5
+    },
+    {
       "id": 2,
       "name": "Milk",
       "cost": 1
@@ -253,17 +258,6 @@
     }
   ],
   "fakeForm": [
-    {
-      "firstName": "",
-      "id": 1
-    },
-    {
-      "firstName": "fwew",
-      "id": 2
-    },
-    {
-      "firstName": "wef",
-      "id": 3
-    }
+
   ]
 }
