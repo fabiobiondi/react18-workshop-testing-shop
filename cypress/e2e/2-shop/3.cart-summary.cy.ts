@@ -1,16 +1,20 @@
 import { mockProducts } from "../../../mocks";
 import { productsMock } from "../mocks/products-mock";
+const firstProduct = productsMock[0];
 
 /*import { slowCypressDown } from 'cypress-slow-down';
 slowCypressDown(300)*/
 
 describe("Cart Summary", () => {
+  /**
+   * Select size, color and click to "add to bag" button
+   */
   beforeEach(() => {
     // Mock Products request and provide mock data
     cy.intercept(
       `${Cypress.env("REACT_APP_API_URL")}/products/1`,
       { method: "GET" },
-      productsMock[0]
+      firstProduct
     );
     // Visit shop page
     cy.visit(`${Cypress.env("REACT_APP_URL")}/shop/1`);
@@ -18,26 +22,27 @@ describe("Cart Summary", () => {
     // select first color
     cy.get('[data-testid="colors"]')
       .children()
-      .find(`[style="background-color: ${productsMock[0].colors[0]};"]`)
+      .find(`[style="background-color: ${firstProduct.colors[0]};"]`)
       .first()
       .click();
 
     // select first size
     cy.get('[data-testid="sizes"]')
       .children()
-      .contains(productsMock[0].sizes[0])
+      .contains(firstProduct.sizes[0])
       .first()
       .click();
 
-    // click
+    // click "add to cart" button
     cy.get("button").contains("Add to bag").click();
-
+    // reference to the cart summary panel
     cy.get('[data-testid="cart-summary"]').as("summary");
   });
 
-  it(`should contains the item added to cart`, () => {
+  it(`should display the item added to cart`, () => {
+    // within: checks only inside the specified container
     cy.get("@summary").within(() => {
-      cy.contains(mockProducts[0].name);
+      cy.contains(firstProduct.name);
     });
   });
 
@@ -59,10 +64,16 @@ describe("Cart Summary", () => {
     });
   });
 
-  it(`should remove the element`, () => {
+  it(`should remove the element clicking the 'remove' button`, () => {
     cy.get("@summary").within(() => {
       cy.contains("Remove").click();
-      cy.contains(mockProducts[0].name).should("not.exist");
+      cy.contains(firstProduct.name).should("not.exist");
+    });
+  });
+
+  it(`should enable the checkout button if cart has at least one element`, () => {
+    cy.get("@summary").within(() => {
+      cy.contains("Checkout").should("be.enabled");
     });
   });
 
@@ -73,18 +84,12 @@ describe("Cart Summary", () => {
     });
   });
 
-  it(`should enable the checkout button if cart has at least one element`, () => {
-    cy.get("@summary").within(() => {
-      cy.contains("Checkout").should("be.enabled");
-    });
-  });
-
-  it(`should go to the checkout page when button is clicked`, () => {
+  it(`should redirect to the checkout page when the 'checkout' button is clicked`, () => {
     cy.get("@summary").within(() => {
       cy.contains("Checkout").click();
     });
 
-    cy.location().should(location => {
+    cy.location().should((location) => {
       expect(location.pathname).to.eq(`/checkout`);
     });
   });

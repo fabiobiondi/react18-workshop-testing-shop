@@ -1,29 +1,31 @@
-
 // const API = Cypress.env('REACT_APP_BASE_API');
 import "cypress-localstorage-commands";
 
 import { ordersListMock } from "../mocks/orders-mock";
+const firstOrder = ordersListMock[0];
 
 describe("Admin: Order Page", () => {
   beforeEach(() => {
     // cy.restoreLocalStorage();
 
-    // Mock Login
+    // Mock Orders
     cy.intercept(
       `${Cypress.env("REACT_APP_API_URL")}/660/orders`,
       { method: "GET" },
       ordersListMock
     );
 
+    // Mock Login
     cy.intercept(
       `${Cypress.env("REACT_APP_API_URL")}/login`,
       { method: "POST" },
       { accessToken: 123, user: { email: "xyz@abc.com", id: 1 } }
     );
 
-    // cy.intercept(`${API}/users`, {method: 'GET'}, mockData)
+    // LOGIN
     cy.visit(`${Cypress.env("REACT_APP_URL")}/login`);
     cy.login("Fabio_Biondi", 1234);
+    // Reference to the order list
     cy.get('[data-testid="order-list"]').as("list");
   });
 
@@ -35,40 +37,45 @@ describe("Admin: Order Page", () => {
     cy.get("@list").children().should("have.length", ordersListMock.length);
   });
 
-  // useless because of next text in which we iterate on all list elements
-  it(`should properly display data on first element`, () => {
-    cy.get("@list").first().contains(ordersListMock[0].client.first_name);
-
-    cy.get("@list").first().contains(ordersListMock[0].totalCost);
-
-    cy.get("@list").first().contains(ordersListMock[0].status);
+  /**
+   * Check if the first item of the list contains some product data
+   * NOTE: this test useless because of next test in which we iterate on all list elements
+   */
+  it(`should properly display product data on first element`, () => {
+    cy.get("@list").first().contains(firstOrder.client.first_name);
+    cy.get("@list").first().contains(firstOrder.totalCost);
+    cy.get("@list").first().contains(firstOrder.status);
   });
 
-  it(`should properly display data on each element`, () => {
+  /**
+   * Better alternative to the previous test
+   * It checks all products
+   */
+  it(`should properly display product data on each element`, () => {
     cy.get("@list")
       .children()
       .each(($el, index, $list) => {
         cy.wrap($el).contains(ordersListMock[index].client.first_name);
         cy.wrap($el).contains(ordersListMock[index].totalCost);
         cy.wrap($el).contains(ordersListMock[index].status);
+        cy.wrap($el).contains(ordersListMock[index].totalCost);
       });
   });
 
-  it(`should toggle status`, () => {
+  it(`should toggle the order status`, () => {
     // Mock Login
     cy.intercept(
-      `${Cypress.env("REACT_APP_API_URL")}/660/orders/${ordersListMock[0].id}`,
+      `${Cypress.env("REACT_APP_API_URL")}/660/orders/${firstOrder.id}`,
       { method: "PATCH" },
       {
         body: {
-          ...ordersListMock[0],
-          status:
-            ordersListMock[0].status === "pending" ? "shipped" : "pending",
+          ...firstOrder,
+          status: firstOrder.status === "pending" ? "shipped" : "pending",
         },
       }
     );
 
-    // click on Actions button
+    // click on Actions dropdown
     cy.get("@list").first().contains("Actions").click();
 
     // click on Toggle Status button
