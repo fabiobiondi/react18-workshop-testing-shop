@@ -239,5 +239,31 @@
       "items": [],
       "id": 4
     }
+  ],
+  "fakeList": [
+    {
+      "id": 2,
+      "name": "Milk",
+      "cost": 1
+    },
+    {
+      "id": 3,
+      "name": "Bread",
+      "cost": 2
+    }
+  ],
+  "fakeForm": [
+    {
+      "firstName": "",
+      "id": 1
+    },
+    {
+      "firstName": "fwew",
+      "id": 2
+    },
+    {
+      "firstName": "wef",
+      "id": 3
+    }
   ]
 }

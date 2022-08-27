@@ -1,13 +1,16 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import CartSummaryPanel from "./core/components/CartSummary";
+import {
+  AdminPage,
+  CheckoutConfirmPage,
+  CheckoutPage,
+  HelloCypress,
+  HomePage,
+  LoginPage,
+  ProductPage,
+  ShopPage,
+} from "./pages";
 import NavBar from "./core/components/NavBar";
-import AdminPage from "./pages/admin/AdminPage";
-import CheckoutConfirmPage from "./pages/checkout/CheckoutConfirmPage";
-import CheckoutPage from "./pages/checkout/CheckoutPage";
-import HomePage from "./pages/home/HomePage";
-import LoginPage from "./pages/login/LoginPage";
-import ProductPage from "./pages/shop/ProductPage";
-import ShopPage from "./pages/shop/ShopPage";
+import CartSummaryPanel from "./core/components/CartSummary";
 import { Interceptor } from "./shared/auth/components/Interceptor";
 import { PrivateRoute } from "./shared/auth/components/PrivateRoute";
 
@@ -28,6 +31,7 @@ function App() {
           <Route path="shop/:id" element={<ProductPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="checkout-confirm" element={<CheckoutConfirmPage />} />
+          <Route path="hello-cypress" element={<HelloCypress />} />
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </div>

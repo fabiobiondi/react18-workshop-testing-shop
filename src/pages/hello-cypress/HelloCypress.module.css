@@ -1,0 +1,23 @@
+.panel {
+  @apply bg-slate-200 rounded-xl p-4 mb-4;
+}
+.panel > h1 {
+  @apply text-2xl mb-4;
+}
+
+.alert {
+  @apply rounded-xl p-2 my-1;
+}
+
+li {
+  @apply border-b border-b-white;
+}
+button[type="submit"],
+button[type="button"] {
+  @apply bg-orange-300 rounded-md p-2 m-1 text-sm hover:opacity-50 transition
+  disabled:opacity-30;
+}
+
+input[type="text"] {
+  @apply disabled:opacity-30;
+}

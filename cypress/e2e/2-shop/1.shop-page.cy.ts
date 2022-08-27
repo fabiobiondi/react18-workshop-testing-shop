@@ -63,12 +63,14 @@ describe("Shop Page", () => {
    * NOTE: See next test for a better solution to test all products
    */
   it(`should first and last product display the color list`, () => {
+    // First product
     mockProducts.forEach((p, index) => {
       cy.get("@productList")
         .children()
         .first()
         .find(`[style="background-color: ${firstProduct.colors[index]};"]`);
 
+      // Last product
       cy.get("@productList")
         .children()
         .last()
@@ -83,7 +85,7 @@ describe("Shop Page", () => {
    * This check all the children of the list
    * and for its child it check if it displays all the available colors
    */
-  it(`should first and last product display at least a list`, () => {
+  it(`should all products display the list of all colors`, () => {
     cy.get("@productList").each(($el, index) => {
       mockProducts.forEach((p, index) => {
         cy.wrap($el).find(`[style="background-color: ${p.colors[index]};"]`);
