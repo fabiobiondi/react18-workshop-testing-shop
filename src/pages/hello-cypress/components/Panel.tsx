@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 
 interface PanelProps {
-  title: string;
+  title?: string;
 }
 
 export function Panel(props: PropsWithChildren<PanelProps>) {

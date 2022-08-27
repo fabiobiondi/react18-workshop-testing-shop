@@ -1,5 +1,7 @@
 import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
+import { Panel } from "./components/Panel";
+import { Toggable } from "./components/Togglable";
 import css from "./HelloCypress.module.css";
 
 export interface Item {
@@ -91,6 +93,13 @@ const HelloCypress = () => {
           );
         })}
       </ul>
+
+      <h1>Hello Components</h1>
+      <div className={css.panel}>
+        <Panel title="Simple Panel">lorem ipsum</Panel>
+        <br />
+        <Toggable title="Toggable Panel">Click header to toggle</Toggable>
+      </div>
     </div>
   );
 };

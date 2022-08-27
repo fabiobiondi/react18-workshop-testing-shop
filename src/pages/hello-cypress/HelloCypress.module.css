@@ -5,6 +5,10 @@
   @apply text-2xl mb-4;
 }
 
+h1 {
+  @apply text-2xl my-4;
+}
+
 .alert {
   @apply rounded-xl p-2 my-1;
 }

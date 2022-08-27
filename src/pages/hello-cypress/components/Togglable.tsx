@@ -9,10 +9,11 @@ interface PanelProps {
 
 export function Toggable(props: PropsWithChildren<PanelProps>) {
   const [isOpen, setIsOpen] = useState<boolean>(true);
+  const { open = true } = props;
 
   useEffect(() => {
-    setIsOpen(!!props.open);
-  }, [props.open]);
+    setIsOpen(!!open);
+  }, [open]);
 
   function iconClickHandler(e: React.MouseEvent<HTMLElement>) {
     e.stopPropagation();
