@@ -63,21 +63,20 @@ export default function CartSummaryPanel() {
 
                       <div className="mt-8">
                         <div className="flow-root">
-                          <ul
-                            className="-my-6 divide-y divide-gray-200"
-                          >
-                            {items.map((item) => <CartSummaryProduct
-                              key={item.product.id + item.size + item.color}
-                              cartItem={item}
-                              decrement={() => decQty(item)}
-                              increment={() => incQty(item)}
-                              remove={() => removeFromCart(item)}
-                            />)}
+                          <ul className="-my-6 divide-y divide-gray-200">
+                            {items.map((item) => (
+                              <CartSummaryProduct
+                                key={item.product.id + item.size + item.color}
+                                cartItem={item}
+                                decrement={() => decQty(item)}
+                                increment={() => incQty(item)}
+                                remove={() => removeFromCart(item)}
+                              />
+                            ))}
                           </ul>
                         </div>
                       </div>
                     </div>
-
 
                     <CartSummaryFooter
                       totalCost={totalCost()}
