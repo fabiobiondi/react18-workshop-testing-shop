@@ -1,18 +1,20 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { APP_CONFIG } from "../../core/config";
 
+// TODO: LDP add mock of this service
+
 function httpClientBuilder(baseUrl: string) {
   const get = <T>(url: string): Promise<T> =>
-    axios.get<T>(`${baseUrl}${url}`).then(response => response.data);
+    axios.get<T>(`${baseUrl}${url}`).then((response) => response.data);
 
   const post = <T, D = any>(url: string, data?: D): Promise<T> =>
-    axios.post<T>(`${baseUrl}${url}`, data).then(response => response.data);
+    axios.post<T>(`${baseUrl}${url}`, data).then((response) => response.data);
 
   const patch = <T>(url: string, data?: Partial<T>): Promise<T> =>
-    axios.patch<T>(`${baseUrl}${url}`, data).then(response => response.data);
+    axios.patch<T>(`${baseUrl}${url}`, data).then((response) => response.data);
 
   const remove = <T>(url: string): Promise<T> =>
-    axios.delete<T>(`${baseUrl}${url}`).then(response => response.data);
+    axios.delete<T>(`${baseUrl}${url}`).then((response) => response.data);
 
   const onRequest = (
     action: (request: AxiosRequestConfig<unknown>) => AxiosRequestConfig<any>

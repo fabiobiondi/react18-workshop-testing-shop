@@ -13,7 +13,7 @@ const INITIAL_STATE: Credentials = {
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { signIn, isLogged, error, pending } = useAuth();
+  const { signIn, isLogged, isError: error, pending } = useAuth();
   const [formData, setFormData] = useState<Credentials>(INITIAL_STATE);
   const [dirty, setDirty] = useState<boolean>(false);
 

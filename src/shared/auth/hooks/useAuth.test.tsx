@@ -1,48 +1,69 @@
-import { renderHook } from "@testing-library/react";
-import { rest } from "msw";
-import { setupServer } from "msw/node";
-import { APP_CONFIG } from "../../../core/config";
+import { act, renderHook } from "@testing-library/react";
+import { httpClient } from "../../utils/http.utils";
 import { useAuth } from "./useAuth";
 
-const server = setupServer(
-  // capture "GET /greeting" requests
-  rest.get(`${APP_CONFIG.baseApiUrl}/login`, (req, res, ctx) => {
-    // respond using a mocked JSON body
-    return res(ctx.json({ accessToken: "123" }));
-  })
-);
+jest.mock("../../utils/http.utils");
+jest.mock("../../utils/localstorage.utils.ts");
 
-// establish API mocking before all tests
-beforeAll(() => server.listen());
-// reset any request handlers that are declared as a part of our tests
-// (i.e. for testing one-time error scenarios)
-afterEach(() => server.resetHandlers());
-// clean up once the tests are done
-afterAll(() => server.close());
+describe("useAuth", () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
 
-test.skip("signIn returns a promise with data if success", async () => {
-  const { result } = renderHook(() => useAuth());
-  const res = await result.current.signIn({ username: "f", password: "b" });
-  expect(res.accessToken).toBe("123");
-});
+  describe("SignIn", () => {
+    const { result } = renderHook(() => useAuth());
+    const credentials = {
+      username: "username",
+      password: "password",
+    };
+    let httpClientMock = httpClient as jest.Mocked<typeof httpClient>;
 
-test.skip("signin returns error if there are server problem", async () => {
-  server.use(
-    rest.get(`${APP_CONFIG.baseApiUrl}/login`, (req, res, ctx) => {
-      return res(
-        ctx.status(404),
-        ctx.json({
-          errorMessage: `some errors`,
-        })
-      );
-    })
-  );
-  const { result } = renderHook(() => useAuth());
-  let errorMsg;
-  try {
-    await result.current.signIn({ username: "f", password: "b" });
-  } catch (e: any) {
-    errorMsg = e.response.data.errorMessage;
-  }
-  expect(errorMsg).toBe("some errors");
+    describe("Success", () => {
+      beforeEach(() => {
+        httpClientMock.post.mockResolvedValue({
+          accessToken: "123",
+        });
+      });
+
+      test("should set Error false before call api", async () => {
+        await act(async () => {
+          await result.current.signIn(credentials);
+        });
+        expect(result.current.isError).toBeFalsy();
+      });
+
+      test("should call the signIn method", async () => {
+        await act(async () => {
+          await result.current.signIn(credentials);
+        });
+        expect(httpClientMock.post).toHaveBeenCalledWith("/login", {
+          email: "username",
+          password: "password",
+        });
+      });
+
+      test("should set pending to false when signIn is ended", async () => {
+        await act(async () => {
+          await result.current.signIn(credentials);
+        });
+        expect(result.current.pending).toBeFalsy();
+      });
+    });
+
+    describe("error", () => {
+      beforeEach(() => {
+        httpClientMock.post.mockRejectedValue(new Error("error"));
+      });
+
+      test("should throw error if http request fails", async () => {
+        await expect(
+          act(async () => {
+            await result.current.signIn(credentials);
+          })
+        ).rejects.toThrowError("error");
+      });
+
+      test.todo("should set error to true when http request fails");
+    });
+  });
 });

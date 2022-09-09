@@ -15,10 +15,10 @@ import {
 
 export function useAuth() {
   const [pending, setPending] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   async function signIn(params: Credentials): Promise<Auth> {
-    setError(false);
+    setIsError(false);
     setPending(true);
 
     try {
@@ -29,27 +29,13 @@ export function useAuth() {
       setItemLocalStorage("token", res.accessToken);
       return res;
     } catch (err) {
-      setError(true);
+      setIsError(true);
       console.log("error", err);
       throw err;
     } finally {
       setPending(false);
     }
   }
-/*
-
-  function signInFake(params: Credentials): Promise<Auth> {
-    return httpClient
-      .post<Auth, CredentialsDto>("register", {
-        email: params.username,
-        password: params.password,
-      })
-      .then(res => {
-        setItemLocalStorage("token", res.accessToken);
-        return res;
-      });
-  }
-*/
 
   function signOut() {
     removeItemLocalStorage("token");
@@ -63,7 +49,7 @@ export function useAuth() {
     signIn,
     signOut,
     isLogged,
-    error,
+    isError,
     pending,
   };
 }
