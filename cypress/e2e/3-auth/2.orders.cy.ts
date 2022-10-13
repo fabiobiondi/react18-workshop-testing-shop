@@ -62,7 +62,7 @@ describe("Admin: Order Page", () => {
       });
   });
 
-  it(`should toggle the order status`, () => {
+  it.only(`should toggle the order status`, () => {
     // Mock Login
     cy.intercept(
       `${Cypress.env("REACT_APP_API_URL")}/660/orders/${firstOrder.id}`,
@@ -75,10 +75,15 @@ describe("Admin: Order Page", () => {
       }
     );
 
+    // check if status is 'pending'
+    cy.get("@list").first().contains("pending");
+
     // click on Actions dropdown
     cy.get("@list").first().contains("Actions").click();
-
     // click on Toggle Status button
     cy.get("@list").first().contains("Toggle").click();
+
+    // click if status has been toggled to 'shipped'
+    cy.get("@list").first().contains("shipped");
   });
 });
