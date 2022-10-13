@@ -62,7 +62,7 @@ describe("Admin: Order Page", () => {
       });
   });
 
-  it.only(`should toggle the order status`, () => {
+  it(`should toggle the order status`, () => {
     // Mock Login
     cy.intercept(
       `${Cypress.env("REACT_APP_API_URL")}/660/orders/${firstOrder.id}`,
