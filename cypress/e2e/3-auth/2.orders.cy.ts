@@ -24,7 +24,7 @@ describe("Admin: Order Page", () => {
 
     // LOGIN
     cy.visit(`${Cypress.env("REACT_APP_URL")}/login`);
-    cy.login("Fabio_Biondi", 1234);
+    cy.login("Fabio_Biondi", "1234");
     // Reference to the order list
     cy.get('[data-testid="order-list"]').as("list");
   });
