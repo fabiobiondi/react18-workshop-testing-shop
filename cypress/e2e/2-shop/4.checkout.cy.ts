@@ -51,7 +51,7 @@ describe("Cart Summary", () => {
     cy.get("button[type=submit]").should("be.enabled");
   });
 
-  it("should send product payload data via POST method when submit button is clicked", () => {
+  it.skip("should send product payload data via POST method when submit button is clicked", () => {
     const formData = doFillForm();
     cy.get("button[type=submit]").click();
     cy.wait("@orderService").then((xhr) => {
@@ -59,6 +59,7 @@ describe("Cart Summary", () => {
       expect(xhr.request.body.client).deep.equals(formData);
     });
   });
+
   it("should navigate to the 'confirm' page when form is submitted", () => {
     doFillForm();
     cy.get("button[type=submit]").click();
