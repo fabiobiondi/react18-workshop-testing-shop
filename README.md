@@ -24,4 +24,4 @@ npm run test
 * [Slide: Cypress Intro](https://www.slideshare.net/secret/KkHGe1CdgnMlGx)
 * [Slide: Unit Test](https://tinyurl.com/fdh3mykb)
 * [Repo: Unit Test](https://github.com/Puppo/reactday-2022-workshop-testing)
-* [Feedback Form](https://github.com/Puppo/reactday-2022-workshop-testing)
+* [Feedback Form](https://tinyurl.com/yc87r2bv)
