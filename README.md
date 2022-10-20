@@ -1,45 +1,27 @@
-# TODO
+# Unit & E2E Test workshop
 
-## VIEWS
-* HOME (TODO)
+This repository contains a small e-commerce project for our workshop about unit & e2e tests
 
-## UIKIT
+### Run project
 
-* DropDown
-* Color Circle
-* (maybe) LeafletMap - for Homepage (TODO: copy from another project) 
-* Stars / Rate (TODO)
-* Increment / Decrement quantity (TODO)
-* Single Product Panel in Shop Page (TODO)
-* Sizes (TODO)
-* Colors (TODO)
+```bash
+# run react app
+npm run start
+
+# run http server
+npm run server
+
+# run cypress
+npm run cypress
+
+# run tests
+npm run test
+```
 
 
-# TEST (TODO)
+## Resources
 
-* E2E
-  * Iniziare con i test dell'homepage
-    * selettori
-    * simulare eventi nativi
-    * Mock e Interceptor
-  * Testare alcuni componenti in modo isolato
-    * Modali
-    * Dropdown
-    * Altre utils
-  * Testare tutto il processo di acquisto
-    * ...
-  * Testare Area Admin
-    * Creare un command per l'auth
-    * Mock Auth
-    * Testare protezione route
-    
-
-Unit
-    * Creare alcuni componenti Riusabili (vedi lista UIKIT sopra)
-    * Testare componenti UIKIT
-    * Testare alcuni custom hooks (fetch dati + hooks)
-        * probabilmente sarà necessario mockare alcune librerie come il router
-        * Utilizzo di MSW per il mock
-    * Può aver senso testare un form visto che lo facciamo E2E?
-    
-    
+* [Slide: Cypress Intro](https://www.slideshare.net/secret/KkHGe1CdgnMlGx)
+* [Slide: Unit Test](https://tinyurl.com/fdh3mykb)
+* [Repo: Unit Test](https://github.com/Puppo/reactday-2022-workshop-testing)
+* [Feedback Form](https://github.com/Puppo/reactday-2022-workshop-testing)
