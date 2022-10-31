@@ -5,6 +5,9 @@ This repository contains a small e-commerce project for our workshop about unit 
 ### Run project
 
 ```bash
+# create .env.local and put REACT_APP_API_URL
+REACT_APP_API_URL=http://localhost:3001
+
 # run react app
 npm run start
 
